@@ -140,8 +140,8 @@ function CalendlyWidget() {
           setTimeout(() => {
             const iframe = calendlyRef.current?.querySelector('iframe');
             if (iframe) {
-              iframe.style.height = 'auto';
-              iframe.style.minHeight = '700px';
+              iframe.style.height = '600px';
+              iframe.style.minHeight = '600px';
             }
           }, 1000);
         }
@@ -155,11 +155,11 @@ function CalendlyWidget() {
   }, []);
 
   return (
-    <div className="calendly-inline-widget-wrapper w-full" style={{ minHeight: '700px' }}>
+    <div className="calendly-inline-widget-wrapper w-full max-w-3xl mx-auto" style={{ minHeight: '600px' }}>
       <div 
         ref={calendlyRef}
         className="calendly-inline-widget w-full" 
-        style={{ minWidth: '320px', minHeight: '700px', height: '100%' }}
+        style={{ minWidth: '320px', minHeight: '600px', height: '100%' }}
       ></div>
     </div>
   );
@@ -333,17 +333,17 @@ export default function HomePage() {
         <div className="absolute top-0 right-0 w-32 h-32 bg-[#B60000] rounded-full blur-2xl opacity-20 -z-10"></div>
         <div className="absolute top-0 left-1/4 w-24 h-24 bg-[#B60000] rounded-lg blur-xl opacity-15 rotate-45 -z-10"></div>
         <div className="container mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 relative z-10">
-          <div className="flex items-center justify-between h-16 md:h-20">
-            <Link href="/" className="flex items-center gap-2 md:gap-3 hover:opacity-80 transition-opacity flex-shrink-0">
+          <div className="flex items-center justify-between h-14 md:h-20">
+            <Link href="/" className="flex items-center gap-1.5 md:gap-3 hover:opacity-80 transition-opacity flex-shrink-0 min-w-0">
               <Image
                 src="/logob.png"
                 alt="Business United"
                 width={120}
                 height={40}
-                className="h-8 md:h-10 w-auto object-contain"
+                className="h-7 md:h-10 w-auto object-contain flex-shrink-0"
                 priority
               />
-              <span className="text-white font-bold text-lg md:text-2xl tracking-tight">Business United</span>
+              <span className="hidden sm:inline text-white font-bold text-base md:text-2xl tracking-tight whitespace-nowrap">Business United</span>
             </Link>
 
             <nav className="hidden md:flex items-center gap-8">
@@ -363,10 +363,11 @@ export default function HomePage() {
               
               <button
                 onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-                className="md:hidden p-2.5 text-white hover:bg-white/20 rounded-lg transition-all duration-200 border border-white/30 bg-white/5 flex-shrink-0 z-50 relative"
+                className="md:hidden p-2.5 min-w-[44px] min-h-[44px] flex items-center justify-center text-white hover:bg-white/20 rounded-lg transition-all duration-200 border border-white/30 bg-white/5 flex-shrink-0 z-50 relative touch-manipulation"
                 aria-label="Menu"
+                aria-expanded={isMobileMenuOpen}
               >
-                {isMobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+                {isMobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
               </button>
             </div>
           </div>
@@ -374,40 +375,40 @@ export default function HomePage() {
 
         {/* Menu mobile */}
         {isMobileMenuOpen && (
-          <div className="md:hidden border-t border-white/10 bg-black/95 relative z-50">
-            <nav className="px-4 py-4 space-y-2">
+          <div className="md:hidden border-t border-white/10 bg-black/98 backdrop-blur-xl relative z-50 animate-slide-down">
+            <nav className="px-4 py-3 space-y-1">
               <a 
                 href="#services" 
                 onClick={() => setIsMobileMenuOpen(false)}
-                className="block text-white/90 hover:text-white transition-colors font-medium py-3 px-2 rounded-lg hover:bg-white/5"
+                className="block text-white/95 hover:text-white transition-colors font-medium py-3.5 px-4 rounded-xl hover:bg-white/10 active:bg-white/15 min-h-[44px] flex items-center touch-manipulation"
               >
                 Services
               </a>
               <a 
                 href="#approche" 
                 onClick={() => setIsMobileMenuOpen(false)}
-                className="block text-white/90 hover:text-white transition-colors font-medium py-3 px-2 rounded-lg hover:bg-white/5"
+                className="block text-white/95 hover:text-white transition-colors font-medium py-3.5 px-4 rounded-xl hover:bg-white/10 active:bg-white/15 min-h-[44px] flex items-center touch-manipulation"
               >
                 Notre approche
               </a>
               <a 
                 href="#temoignages" 
                 onClick={() => setIsMobileMenuOpen(false)}
-                className="block text-white/90 hover:text-white transition-colors font-medium py-3 px-2 rounded-lg hover:bg-white/5"
+                className="block text-white/95 hover:text-white transition-colors font-medium py-3.5 px-4 rounded-xl hover:bg-white/10 active:bg-white/15 min-h-[44px] flex items-center touch-manipulation"
               >
                 Témoignages
               </a>
               <a 
                 href="#contact" 
                 onClick={() => setIsMobileMenuOpen(false)}
-                className="block text-white/90 hover:text-white transition-colors font-medium py-3 px-2 rounded-lg hover:bg-white/5"
+                className="block text-white/95 hover:text-white transition-colors font-medium py-3.5 px-4 rounded-xl hover:bg-white/10 active:bg-white/15 min-h-[44px] flex items-center touch-manipulation"
               >
                 Contact
               </a>
               <a 
                 href="#contact" 
                 onClick={() => setIsMobileMenuOpen(false)}
-                className="block w-full text-center px-4 py-2.5 bg-[#B60000] text-white font-semibold rounded-lg hover:bg-[#950000] transition-all duration-300 mt-3 text-sm"
+                className="block w-full text-center px-4 py-3.5 bg-[#B60000] text-white font-semibold rounded-xl hover:bg-[#950000] active:bg-[#850000] transition-all duration-300 mt-2 mb-2 min-h-[44px] flex items-center justify-center touch-manipulation"
               >
                 PRENDRE RDV
               </a>
@@ -417,7 +418,7 @@ export default function HomePage() {
       </header>
 
       {/* Section Hero - Notre mission */}
-      <section className="relative pt-16 md:pt-20 pb-12 md:pb-16 overflow-hidden bg-gradient-to-br from-gray-900 via-black to-gray-900">
+      <section className="relative pt-14 md:pt-20 pb-8 md:pb-16 overflow-hidden bg-gradient-to-br from-gray-900 via-black to-gray-900">
         {/* Effet de background animé */}
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_20%,rgba(182,0,0,0.1),transparent_50%)] animate-pulse-slow"></div>
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_70%_80%,rgba(182,0,0,0.08),transparent_50%)] animate-pulse-slow animation-delay-200"></div>
@@ -445,39 +446,39 @@ export default function HomePage() {
         </div>
 
         <div className="container mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 relative z-10">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16 items-center py-2 md:py-4">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 md:gap-16 items-center py-2 md:py-4">
             {/* Contenu texte à gauche */}
             <div className="text-center lg:text-left">
               <div className="animate-fade-in-up animation-delay-100">
-                <div className="inline-flex items-center gap-2 px-3 py-1.5 md:px-4 md:py-2 bg-[#B60000] rounded-full mb-4 md:mb-6 shadow-lg shadow-[#B60000]/50 animate-scale-in">
-                  <span className="text-white text-xs md:text-sm font-bold">CAEN & NORMANDIE</span>
+                <div className="inline-flex items-center gap-2 px-2.5 py-1 md:px-4 md:py-2 bg-[#B60000] rounded-full mb-3 md:mb-6 shadow-lg shadow-[#B60000]/50 animate-scale-in">
+                  <span className="text-white text-[10px] md:text-sm font-bold">CAEN & NORMANDIE</span>
                 </div>
               </div>
 
-              <h1 className="animate-fade-in-up animation-delay-200 text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-semibold text-white mb-4 md:mb-6 leading-[1.2] tracking-tight">
+              <h1 className="animate-fade-in-up animation-delay-200 text-xl sm:text-2xl md:text-4xl lg:text-5xl font-semibold text-white mb-3 md:mb-6 leading-[1.2] tracking-tight">
                 Notre <span className="text-[#B60000] relative inline-block animate-shimmer font-bold">
                   mission
-                  <span className="absolute -bottom-2 left-0 right-0 h-1.5 bg-gradient-to-r from-transparent via-[#B60000] to-transparent rounded-full animate-pulse-slow"></span>
+                  <span className="absolute -bottom-1 md:-bottom-2 left-0 right-0 h-1 md:h-1.5 bg-gradient-to-r from-transparent via-[#B60000] to-transparent rounded-full animate-pulse-slow"></span>
                 </span>
-                <br />
-                Accompagner les entrepreneurs à Caen et en Normandie
+                <br className="hidden sm:block" />
+                <span className="sm:inline">Accompagner les entrepreneurs à Caen et en Normandie</span>
               </h1>
 
-              <p className="animate-fade-in-up animation-delay-400 text-base md:text-lg lg:text-xl text-white/80 mb-6 md:mb-8 leading-relaxed">
+              <p className="animate-fade-in-up animation-delay-400 text-sm md:text-lg lg:text-xl text-white/80 mb-4 md:mb-8 leading-relaxed">
                 Entreprise de conseil en affaires qui t'accompagne de A à Z pour structurer ton business à Caen et la France.
               </p>
 
-              <p className="animate-fade-in-up animation-delay-500 text-base md:text-lg lg:text-xl text-white/90 mb-8 md:mb-10 leading-relaxed">
+              <p className="animate-fade-in-up animation-delay-500 text-sm md:text-lg lg:text-xl text-white/90 mb-6 md:mb-10 leading-relaxed hidden sm:block">
                 Transforme tes idées en actions concrètes, mettre en place une stratégie solide et t'aider à réussir à chaque étape, de la création à la croissance de ton activité.
               </p>
 
               <div className="animate-fade-in-up animation-delay-500">
                 <a 
                   href="#contact"
-                  className="inline-flex items-center gap-1.5 px-4 py-2 md:px-8 md:py-4 bg-[#B60000] text-white font-bold rounded-lg hover:bg-[#950000] transition-all duration-300 text-sm md:text-lg group shadow-lg shadow-[#B60000]/50 hover:shadow-xl hover:shadow-[#B60000]/60 hover:scale-105 animate-scale-in"
+                  className="inline-flex items-center gap-1.5 px-5 py-3 md:px-8 md:py-4 bg-[#B60000] text-white font-bold rounded-lg hover:bg-[#950000] active:bg-[#850000] transition-all duration-300 text-sm md:text-lg group shadow-lg shadow-[#B60000]/50 hover:shadow-xl hover:shadow-[#B60000]/60 hover:scale-105 active:scale-95 animate-scale-in min-h-[44px] touch-manipulation"
                 >
                   Envie d'un échange ?
-                  <ArrowRight className="w-3 h-3 md:w-5 md:h-5 group-hover:translate-x-2 transition-transform duration-300" />
+                  <ArrowRight className="w-4 h-4 md:w-5 md:h-5 group-hover:translate-x-2 transition-transform duration-300" />
                 </a>
               </div>
             </div>
@@ -550,20 +551,20 @@ export default function HomePage() {
       </section>
 
       {/* Section Statistiques - Preuve sociale */}
-      <section className="relative py-8 md:py-10 bg-black border-y border-white/5">
-        <div className="container mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 lg:gap-6">
+      <section className="relative py-6 md:py-10 bg-black border-y border-white/5">
+        <div className="container mx-auto max-w-7xl px-3 sm:px-6 lg:px-8">
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-2.5 md:gap-6">
             {/* Statistique 1 */}
             <ScrollReveal delay={0}>
-              <div className="group relative flex flex-col items-center justify-center py-6 px-4 lg:py-8 lg:px-6 border border-white/5 rounded-xl hover:border-[#B60000]/40 hover:bg-white/[0.02] transition-all duration-300">
-                <div className="text-4xl md:text-5xl lg:text-6xl font-bold text-[#B60000] mb-1.5 leading-none">
+              <div className="group relative flex flex-col items-center justify-center py-4 px-2 md:py-6 md:px-4 lg:py-8 lg:px-6 border border-white/5 rounded-lg md:rounded-xl hover:border-[#B60000]/40 hover:bg-white/[0.02] transition-all duration-300">
+                <div className="text-2xl md:text-4xl lg:text-6xl font-bold text-[#B60000] mb-1 leading-none">
                   +15
                 </div>
-                <div className="text-white/90 text-xs md:text-sm font-semibold text-center leading-tight">
+                <div className="text-white/90 text-[10px] md:text-xs lg:text-sm font-semibold text-center leading-tight">
                   Entrepreneurs lancés
                 </div>
-                <div className="text-white/50 text-[10px] md:text-xs mt-1 text-center">
-                  en 12 mois seulement
+                <div className="text-white/50 text-[9px] md:text-[10px] lg:text-xs mt-0.5 text-center">
+                  en 12 mois
                 </div>
                 {/* Ligne décorative au hover */}
                 <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-0 h-0.5 bg-[#B60000] group-hover:w-1/2 transition-all duration-300"></div>
@@ -572,14 +573,14 @@ export default function HomePage() {
 
             {/* Statistique 2 */}
             <ScrollReveal delay={100}>
-              <div className="group relative flex flex-col items-center justify-center py-6 px-4 lg:py-8 lg:px-6 border border-white/5 rounded-xl hover:border-[#B60000]/40 hover:bg-white/[0.02] transition-all duration-300">
-                <div className="text-4xl md:text-5xl lg:text-6xl font-bold text-[#B60000] mb-1.5 leading-none">
+              <div className="group relative flex flex-col items-center justify-center py-4 px-2 md:py-6 md:px-4 lg:py-8 lg:px-6 border border-white/5 rounded-lg md:rounded-xl hover:border-[#B60000]/40 hover:bg-white/[0.02] transition-all duration-300">
+                <div className="text-2xl md:text-4xl lg:text-6xl font-bold text-[#B60000] mb-1 leading-none">
                   100%
                 </div>
-                <div className="text-white/90 text-xs md:text-sm font-semibold text-center leading-tight">
+                <div className="text-white/90 text-[10px] md:text-xs lg:text-sm font-semibold text-center leading-tight">
                   Clients satisfaits
                 </div>
-                <div className="text-white/50 text-[10px] md:text-xs mt-1 text-center">
+                <div className="text-white/50 text-[9px] md:text-[10px] lg:text-xs mt-0.5 text-center">
                   zéro déception
                 </div>
                 {/* Ligne décorative au hover */}
@@ -589,15 +590,15 @@ export default function HomePage() {
 
             {/* Statistique 3 */}
             <ScrollReveal delay={200}>
-              <div className="group relative flex flex-col items-center justify-center py-6 px-4 lg:py-8 lg:px-6 border border-white/5 rounded-xl hover:border-[#B60000]/40 hover:bg-white/[0.02] transition-all duration-300">
-                <div className="text-4xl md:text-5xl lg:text-6xl font-bold text-[#B60000] mb-1.5 leading-none">
+              <div className="group relative flex flex-col items-center justify-center py-4 px-2 md:py-6 md:px-4 lg:py-8 lg:px-6 border border-white/5 rounded-lg md:rounded-xl hover:border-[#B60000]/40 hover:bg-white/[0.02] transition-all duration-300">
+                <div className="text-2xl md:text-4xl lg:text-6xl font-bold text-[#B60000] mb-1 leading-none">
                   3 sem.
                 </div>
-                <div className="text-white/90 text-xs md:text-sm font-semibold text-center leading-tight">
+                <div className="text-white/90 text-[10px] md:text-xs lg:text-sm font-semibold text-center leading-tight">
                   Lancement express
                 </div>
-                <div className="text-white/50 text-[10px] md:text-xs mt-1 text-center">
-                  de l'idée au business
+                <div className="text-white/50 text-[9px] md:text-[10px] lg:text-xs mt-0.5 text-center">
+                  idée → business
                 </div>
                 {/* Ligne décorative au hover */}
                 <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-0 h-0.5 bg-[#B60000] group-hover:w-1/2 transition-all duration-300"></div>
@@ -606,14 +607,14 @@ export default function HomePage() {
 
             {/* Statistique 4 */}
             <ScrollReveal delay={300}>
-              <div className="group relative flex flex-col items-center justify-center py-6 px-4 lg:py-8 lg:px-6 border border-white/5 rounded-xl hover:border-[#B60000]/40 hover:bg-white/[0.02] transition-all duration-300">
-                <div className="text-4xl md:text-5xl lg:text-6xl font-bold text-[#B60000] mb-1.5 leading-none">
+              <div className="group relative flex flex-col items-center justify-center py-4 px-2 md:py-6 md:px-4 lg:py-8 lg:px-6 border border-white/5 rounded-lg md:rounded-xl hover:border-[#B60000]/40 hover:bg-white/[0.02] transition-all duration-300">
+                <div className="text-2xl md:text-4xl lg:text-6xl font-bold text-[#B60000] mb-1 leading-none">
                   +50%
                 </div>
-                <div className="text-white/90 text-xs md:text-sm font-semibold text-center leading-tight">
+                <div className="text-white/90 text-[10px] md:text-xs lg:text-sm font-semibold text-center leading-tight">
                   CA en plus
                 </div>
-                <div className="text-white/50 text-[10px] md:text-xs mt-1 text-center">
+                <div className="text-white/50 text-[9px] md:text-[10px] lg:text-xs mt-0.5 text-center">
                   résultats garantis
                 </div>
                 {/* Ligne décorative au hover */}
@@ -697,7 +698,7 @@ export default function HomePage() {
       </section>
 
       {/* Section Services */}
-      <section id="services" className="relative py-12 md:py-20 lg:py-32 bg-gradient-to-b from-black via-gray-900 to-black overflow-hidden">
+      <section id="services" className="relative py-8 md:py-20 lg:py-32 bg-gradient-to-b from-black via-gray-900 to-black overflow-hidden">
         {/* Effet de background animé */}
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(182,0,0,0.15),transparent_70%)]"></div>
         <div className="absolute inset-0 bg-[linear-gradient(45deg,transparent_30%,rgba(182,0,0,0.05)_50%,transparent_70%)] animate-slow-rotate"></div>
@@ -710,24 +711,24 @@ export default function HomePage() {
         </div>
         <div className="container mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 relative z-10">
           <ScrollReveal>
-            <div className="text-center mb-12 md:mb-16 lg:mb-20">
-              <div className="inline-flex items-center gap-2 px-4 py-2 md:px-6 md:py-3 bg-[#B60000]/20 rounded-full mb-6 md:mb-8 backdrop-blur-sm border border-[#B60000]/30 animate-scale-in">
-                <Rocket className="w-5 h-5 md:w-6 md:h-6 text-[#B60000]" />
-                <span className="text-[#B60000] text-sm md:text-base font-bold">NOS SERVICES</span>
+            <div className="text-center mb-8 md:mb-16 lg:mb-20">
+              <div className="inline-flex items-center gap-1.5 md:gap-2 px-3 py-1.5 md:px-6 md:py-3 bg-[#B60000]/20 rounded-full mb-4 md:mb-8 backdrop-blur-sm border border-[#B60000]/30 animate-scale-in">
+                <Rocket className="w-4 h-4 md:w-6 md:h-6 text-[#B60000]" />
+                <span className="text-[#B60000] text-xs md:text-base font-bold">NOS SERVICES</span>
               </div>
-              <h2 className="text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold text-white mb-4 md:mb-6 leading-tight">
+              <h2 className="text-2xl md:text-4xl lg:text-5xl xl:text-6xl font-bold text-white mb-3 md:mb-6 leading-tight">
                 Accompagnement <span className="text-[#B60000] relative inline-block">
                   complet
-                  <span className="absolute -bottom-2 left-0 right-0 h-1.5 bg-gradient-to-r from-transparent via-[#B60000] to-transparent rounded-full animate-pulse-slow"></span>
+                  <span className="absolute -bottom-1 md:-bottom-2 left-0 right-0 h-1 md:h-1.5 bg-gradient-to-r from-transparent via-[#B60000] to-transparent rounded-full animate-pulse-slow"></span>
                 </span>
               </h2>
-              <p className="text-white/90 text-lg md:text-xl lg:text-2xl max-w-4xl mx-auto leading-relaxed">
+              <p className="text-white/90 text-sm md:text-xl lg:text-2xl max-w-4xl mx-auto leading-relaxed px-2">
                 Des services personnalisés pour transformer ton idée en business rentable. Du conseil stratégique à la croissance, on t'accompagne à chaque étape.
               </p>
             </div>
           </ScrollReveal>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8 max-w-7xl mx-auto">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-8 max-w-7xl mx-auto">
             {/* Service 1 - Conseil & stratégie */}
             <ScrollReveal delay={0}>
               <div className="group relative bg-white/5 backdrop-blur-sm border border-white/10 rounded-2xl p-6 md:p-7 hover:border-[#B60000]/60 hover:bg-white/8 transition-all duration-300 h-full flex flex-col">
@@ -1405,10 +1406,8 @@ export default function HomePage() {
           
           {/* Widget Calendly */}
           <ScrollReveal delay={200}>
-            <div className="max-w-5xl mx-auto">
-              <div className="bg-white rounded-2xl shadow-xl overflow-hidden p-4 md:p-6">
-                <CalendlyWidget />
-              </div>
+            <div className="w-full">
+              <CalendlyWidget />
             </div>
           </ScrollReveal>
         </div>
