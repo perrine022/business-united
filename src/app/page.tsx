@@ -324,6 +324,14 @@ export default function HomePage() {
         <div className="container mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 relative z-10">
           <div className="flex items-center justify-between h-16 md:h-20">
             <Link href="/" className="flex items-center gap-2 md:gap-3 hover:opacity-80 transition-opacity flex-shrink-0">
+              <Image
+                src="/logob.png"
+                alt="Business United"
+                width={120}
+                height={40}
+                className="h-8 md:h-10 w-auto object-contain"
+                priority
+              />
               <span className="text-white font-bold text-lg md:text-2xl tracking-tight">Business United</span>
             </Link>
 
@@ -884,65 +892,88 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* Section Process de lancement - Mise en avant */}
-      <section className="relative py-16 md:py-24 lg:py-32 bg-gradient-to-br from-[#B60000] via-[#950000] to-[#B60000] overflow-hidden">
-        {/* Overlay sombre pour la lisibilité */}
-        <div className="absolute inset-0 bg-black/20"></div>
+      {/* Section Process de lancement - Design Expert UX/UI */}
+      <section className="relative py-20 md:py-28 lg:py-36 bg-gradient-to-br from-[#B60000] via-[#950000] to-[#B60000] overflow-hidden">
+        {/* Overlay avec gradient radial subtil */}
+        <div className="absolute inset-0" style={{
+          background: 'radial-gradient(ellipse at center, rgba(0,0,0,0.2) 0%, transparent 70%)'
+        }}></div>
         
-        {/* Pattern subtil */}
-        <div className="absolute inset-0 opacity-10">
+        {/* Pattern de grille professionnel avec animation subtile */}
+        <div className="absolute inset-0 opacity-[0.06]">
           <div className="absolute inset-0" style={{
-            backgroundImage: `linear-gradient(rgba(255,255,255,0.1) 1px, transparent 1px),
-                              linear-gradient(90deg, rgba(255,255,255,0.1) 1px, transparent 1px)`,
-            backgroundSize: '50px 50px'
+            backgroundImage: `linear-gradient(rgba(255,255,255,0.2) 1px, transparent 1px),
+                              linear-gradient(90deg, rgba(255,255,255,0.2) 1px, transparent 1px)`,
+            backgroundSize: '32px 32px',
+            backgroundPosition: '0 0'
           }}></div>
         </div>
 
+        {/* Effet de lumière ambiante */}
+        <div className="absolute top-0 left-1/4 w-[600px] h-[600px] bg-white/5 rounded-full blur-3xl opacity-30"></div>
+        <div className="absolute bottom-0 right-1/4 w-[500px] h-[500px] bg-white/5 rounded-full blur-3xl opacity-25"></div>
+
         <div className="container mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 relative z-10">
+          {/* Header Section avec animations raffinées */}
           <ScrollReveal>
-            <div className="text-center mb-8 md:mb-12 lg:mb-16">
-              <div className="inline-flex items-center gap-2 px-4 py-2 md:px-6 md:py-3 bg-white/10 rounded-full mb-6 md:mb-8 backdrop-blur-sm border border-white/20">
-                <Rocket className="w-5 h-5 md:w-6 md:h-6 text-white" />
-                <span className="text-white text-sm md:text-base font-semibold">PROCESS COMPLET</span>
+            <div className="text-center mb-16 md:mb-20 lg:mb-24">
+              <div className="inline-flex items-center gap-2.5 px-5 py-2.5 md:px-6 md:py-3 bg-white/[0.09] backdrop-blur-lg rounded-full mb-8 md:mb-10 border border-white/18 shadow-[0_4px_16px_rgba(0,0,0,0.1)] hover:bg-white/[0.12] hover:border-white/25 transition-all duration-500 ease-[cubic-bezier(0.4,0,0.2,1)]">
+                <Rocket className="w-4 h-4 md:w-5 md:h-5 text-white transition-transform duration-500 group-hover:scale-110" />
+                <span className="text-white text-xs md:text-sm font-medium tracking-[0.1em] uppercase">Process Complet</span>
               </div>
-              <h2 className="text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold text-white mb-4 md:mb-6">
-                Je travaille sur tout le <span className="relative inline-block">
-                  process de lancement
-                  <span className="absolute -bottom-1 left-0 right-0 h-0.5 bg-white/50"></span>
+              <h2 className="text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold text-white mb-6 md:mb-8 leading-[1.08] tracking-[-0.02em]">
+                Je travaille sur tout le{' '}
+                <span className="relative inline-block">
+                  <span className="relative z-10">process de lancement</span>
+                  <span className="absolute -bottom-2 left-0 right-0 h-[3px] bg-gradient-to-r from-transparent via-white/70 to-transparent rounded-full"></span>
+                  <span className="absolute -bottom-2 left-0 right-0 h-[1px] bg-white/40"></span>
                 </span>
               </h2>
-              <p className="text-white/90 text-lg md:text-xl lg:text-2xl max-w-3xl mx-auto">
+              <p className="text-white/92 text-lg md:text-xl lg:text-2xl max-w-4xl mx-auto leading-[1.7] font-light tracking-[-0.01em]">
                 Un accompagnement complet de A à Z pour transformer ton idée en business rentable
               </p>
             </div>
           </ScrollReveal>
 
-          {/* Timeline horizontale propre */}
-          <div className="relative max-w-7xl mx-auto">
-            {/* Ligne de connexion - Desktop */}
-            <div className="hidden lg:block absolute top-24 left-0 right-0 h-0.5 z-0">
+          {/* Timeline Professionnelle avec effets avancés */}
+          <div className="relative max-w-7xl mx-auto pt-8">
+            {/* Ligne de connexion animée - Desktop uniquement */}
+            <div className="hidden lg:block absolute top-[96px] left-0 right-0 h-[1.5px] z-0">
+              {/* Ligne principale avec gradient */}
               <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/30 to-transparent"></div>
-              <div className="absolute left-0 top-0 h-full w-full bg-white/20"></div>
+              {/* Ligne centrale avec glow */}
+              <div className="absolute left-[8%] right-[8%] top-0 h-full bg-white/25 shadow-[0_0_8px_rgba(255,255,255,0.3)]"></div>
+              {/* Animation de brillance */}
+              <div className="absolute left-[8%] right-[8%] top-0 h-full bg-gradient-to-r from-transparent via-white/40 to-transparent" style={{
+                animation: 'shimmer-line 3s ease-in-out infinite'
+              }}></div>
             </div>
 
-            {/* Conteneur grid pour timeline horizontale */}
-            <div className="relative grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-6 lg:gap-4">
+            {/* Grille parfaitement alignée avec stagger animation */}
+            <div className="relative grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-6 lg:gap-5">
               
               {/* Étape 1 - Création de site web */}
               <ScrollReveal delay={100}>
                 <div className="group relative">
-                  {/* Point de connexion */}
-                  <div className="hidden lg:block absolute -top-8 left-1/2 -translate-x-1/2 w-3 h-3 bg-white rounded-full z-20 border-2 border-[#B60000] shadow-lg group-hover:scale-125 group-hover:bg-[#B60000] transition-all duration-300"></div>
+                  {/* Point de connexion avec glow animé - Desktop */}
+                  <div className="hidden lg:block absolute -top-[40px] left-1/2 -translate-x-1/2 w-3 h-3 bg-white rounded-full z-30 border-2 border-[#B60000] shadow-[0_0_0_4px_rgba(182,0,0,0.15),0_0_12px_rgba(255,255,255,0.2)] group-hover:scale-[1.3] group-hover:bg-[#B60000] group-hover:shadow-[0_0_0_6px_rgba(182,0,0,0.25),0_0_20px_rgba(182,0,0,0.4)] transition-all duration-500 ease-[cubic-bezier(0.34,1.56,0.64,1)]"></div>
                   
-                  {/* Carte propre */}
-                  <div className="relative bg-white/10 backdrop-blur-sm border border-white/20 rounded-2xl p-6 md:p-8 hover:bg-white/15 hover:border-white/30 transition-all duration-300 h-full flex flex-col items-center text-center group-hover:shadow-xl group-hover:shadow-white/10">
-                    <div className="w-16 h-16 md:w-20 md:h-20 bg-white/20 rounded-xl flex items-center justify-center border-2 border-white/30 mb-4 group-hover:bg-white/30 group-hover:border-white/50 transition-all duration-300">
-                      <Globe className="w-8 h-8 md:w-10 md:h-10 text-white" />
+                  {/* Carte avec effets de profondeur */}
+                  <div className="relative bg-white/[0.085] backdrop-blur-xl border border-white/18 rounded-2xl p-8 md:p-10 hover:bg-white/[0.13] hover:border-white/28 transition-all duration-500 ease-[cubic-bezier(0.4,0,0.2,1)] h-full flex flex-col items-center text-center group-hover:shadow-[0_12px_48px_rgba(0,0,0,0.25),0_0_0_1px_rgba(255,255,255,0.1)] group-hover:-translate-y-2">
+                    {/* Overlay de lumière au hover */}
+                    <div className="absolute inset-0 bg-gradient-to-br from-white/0 via-white/5 to-white/0 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                    
+                    {/* Icône avec effets sophistiqués */}
+                    <div className="relative w-20 h-20 md:w-24 md:h-24 bg-white/[0.13] rounded-2xl flex items-center justify-center border border-white/22 mb-6 group-hover:bg-white/[0.2] group-hover:border-white/35 group-hover:scale-110 group-hover:rotate-3 transition-all duration-500 ease-[cubic-bezier(0.34,1.56,0.64,1)] shadow-[0_4px_16px_rgba(0,0,0,0.1)] group-hover:shadow-[0_8px_24px_rgba(0,0,0,0.15)]">
+                      <div className="absolute inset-0 bg-gradient-to-br from-white/20 to-transparent rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                      <Globe className="w-10 h-10 md:w-12 md:h-12 text-white relative z-10 transition-transform duration-500 group-hover:scale-110" />
                     </div>
-                    <h3 className="text-lg md:text-xl font-bold text-white mb-2">
+                    {/* Titre avec tracking ajusté */}
+                    <h3 className="text-xl md:text-2xl font-bold text-white mb-3 leading-[1.2] tracking-[-0.01em] relative z-10 group-hover:text-white transition-colors duration-300">
                       Création de site web
                     </h3>
-                    <p className="text-white/80 text-sm md:text-base leading-relaxed">
+                    {/* Description avec line-height optimisé */}
+                    <p className="text-white/88 text-sm md:text-base leading-[1.6] max-w-[200px] relative z-10 group-hover:text-white/95 transition-colors duration-300">
                       Site vitrine, landing page, e-commerce
                     </p>
                   </div>
@@ -952,16 +983,19 @@ export default function HomePage() {
               {/* Étape 2 - Création d'entreprise */}
               <ScrollReveal delay={150}>
                 <div className="group relative">
-                  <div className="hidden lg:block absolute -top-8 left-1/2 -translate-x-1/2 w-3 h-3 bg-white rounded-full z-20 border-2 border-[#B60000] shadow-lg group-hover:scale-125 group-hover:bg-[#B60000] transition-all duration-300"></div>
+                  <div className="hidden lg:block absolute -top-[40px] left-1/2 -translate-x-1/2 w-3 h-3 bg-white rounded-full z-30 border-2 border-[#B60000] shadow-[0_0_0_4px_rgba(182,0,0,0.15),0_0_12px_rgba(255,255,255,0.2)] group-hover:scale-[1.3] group-hover:bg-[#B60000] group-hover:shadow-[0_0_0_6px_rgba(182,0,0,0.25),0_0_20px_rgba(182,0,0,0.4)] transition-all duration-500 ease-[cubic-bezier(0.34,1.56,0.64,1)]"></div>
                   
-                  <div className="relative bg-white/10 backdrop-blur-sm border border-white/20 rounded-2xl p-6 md:p-8 hover:bg-white/15 hover:border-white/30 transition-all duration-300 h-full flex flex-col items-center text-center group-hover:shadow-xl group-hover:shadow-white/10">
-                    <div className="w-16 h-16 md:w-20 md:h-20 bg-white/20 rounded-xl flex items-center justify-center border-2 border-white/30 mb-4 group-hover:bg-white/30 group-hover:border-white/50 transition-all duration-300">
-                      <Building2 className="w-8 h-8 md:w-10 md:h-10 text-white" />
+                  <div className="relative bg-white/[0.085] backdrop-blur-xl border border-white/18 rounded-2xl p-8 md:p-10 hover:bg-white/[0.13] hover:border-white/28 transition-all duration-500 ease-[cubic-bezier(0.4,0,0.2,1)] h-full flex flex-col items-center text-center group-hover:shadow-[0_12px_48px_rgba(0,0,0,0.25),0_0_0_1px_rgba(255,255,255,0.1)] group-hover:-translate-y-2">
+                    <div className="absolute inset-0 bg-gradient-to-br from-white/0 via-white/5 to-white/0 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                    
+                    <div className="relative w-20 h-20 md:w-24 md:h-24 bg-white/[0.13] rounded-2xl flex items-center justify-center border border-white/22 mb-6 group-hover:bg-white/[0.2] group-hover:border-white/35 group-hover:scale-110 group-hover:rotate-3 transition-all duration-500 ease-[cubic-bezier(0.34,1.56,0.64,1)] shadow-[0_4px_16px_rgba(0,0,0,0.1)] group-hover:shadow-[0_8px_24px_rgba(0,0,0,0.15)]">
+                      <div className="absolute inset-0 bg-gradient-to-br from-white/20 to-transparent rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                      <Building2 className="w-10 h-10 md:w-12 md:h-12 text-white relative z-10 transition-transform duration-500 group-hover:scale-110" />
                     </div>
-                    <h3 className="text-lg md:text-xl font-bold text-white mb-2">
+                    <h3 className="text-xl md:text-2xl font-bold text-white mb-3 leading-[1.2] tracking-[-0.01em] relative z-10 group-hover:text-white transition-colors duration-300">
                       Création d'entreprise
                     </h3>
-                    <p className="text-white/80 text-sm md:text-base leading-relaxed">
+                    <p className="text-white/88 text-sm md:text-base leading-[1.6] max-w-[200px] relative z-10 group-hover:text-white/95 transition-colors duration-300">
                       Statuts, formalités, administratif
                     </p>
                   </div>
@@ -971,16 +1005,19 @@ export default function HomePage() {
               {/* Étape 3 - Publicité et marketing */}
               <ScrollReveal delay={200}>
                 <div className="group relative">
-                  <div className="hidden lg:block absolute -top-8 left-1/2 -translate-x-1/2 w-3 h-3 bg-white rounded-full z-20 border-2 border-[#B60000] shadow-lg group-hover:scale-125 group-hover:bg-[#B60000] transition-all duration-300"></div>
+                  <div className="hidden lg:block absolute -top-[40px] left-1/2 -translate-x-1/2 w-3 h-3 bg-white rounded-full z-30 border-2 border-[#B60000] shadow-[0_0_0_4px_rgba(182,0,0,0.15),0_0_12px_rgba(255,255,255,0.2)] group-hover:scale-[1.3] group-hover:bg-[#B60000] group-hover:shadow-[0_0_0_6px_rgba(182,0,0,0.25),0_0_20px_rgba(182,0,0,0.4)] transition-all duration-500 ease-[cubic-bezier(0.34,1.56,0.64,1)]"></div>
                   
-                  <div className="relative bg-white/10 backdrop-blur-sm border border-white/20 rounded-2xl p-6 md:p-8 hover:bg-white/15 hover:border-white/30 transition-all duration-300 h-full flex flex-col items-center text-center group-hover:shadow-xl group-hover:shadow-white/10">
-                    <div className="w-16 h-16 md:w-20 md:h-20 bg-white/20 rounded-xl flex items-center justify-center border-2 border-white/30 mb-4 group-hover:bg-white/30 group-hover:border-white/50 transition-all duration-300">
-                      <Megaphone className="w-8 h-8 md:w-10 md:h-10 text-white" />
+                  <div className="relative bg-white/[0.085] backdrop-blur-xl border border-white/18 rounded-2xl p-8 md:p-10 hover:bg-white/[0.13] hover:border-white/28 transition-all duration-500 ease-[cubic-bezier(0.4,0,0.2,1)] h-full flex flex-col items-center text-center group-hover:shadow-[0_12px_48px_rgba(0,0,0,0.25),0_0_0_1px_rgba(255,255,255,0.1)] group-hover:-translate-y-2">
+                    <div className="absolute inset-0 bg-gradient-to-br from-white/0 via-white/5 to-white/0 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                    
+                    <div className="relative w-20 h-20 md:w-24 md:h-24 bg-white/[0.13] rounded-2xl flex items-center justify-center border border-white/22 mb-6 group-hover:bg-white/[0.2] group-hover:border-white/35 group-hover:scale-110 group-hover:rotate-3 transition-all duration-500 ease-[cubic-bezier(0.34,1.56,0.64,1)] shadow-[0_4px_16px_rgba(0,0,0,0.1)] group-hover:shadow-[0_8px_24px_rgba(0,0,0,0.15)]">
+                      <div className="absolute inset-0 bg-gradient-to-br from-white/20 to-transparent rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                      <Megaphone className="w-10 h-10 md:w-12 md:h-12 text-white relative z-10 transition-transform duration-500 group-hover:scale-110" />
                     </div>
-                    <h3 className="text-lg md:text-xl font-bold text-white mb-2">
+                    <h3 className="text-xl md:text-2xl font-bold text-white mb-3 leading-[1.2] tracking-[-0.01em] relative z-10 group-hover:text-white transition-colors duration-300">
                       Publicité & Marketing
                     </h3>
-                    <p className="text-white/80 text-sm md:text-base leading-relaxed">
+                    <p className="text-white/88 text-sm md:text-base leading-[1.6] max-w-[200px] relative z-10 group-hover:text-white/95 transition-colors duration-300">
                       Campagnes, contenus, visibilité
                     </p>
                   </div>
@@ -989,32 +1026,22 @@ export default function HomePage() {
 
               {/* Étape 4 - Accompagnement administratif */}
               <ScrollReveal delay={250}>
-                <div className="group relative flex-1 w-full lg:w-auto">
-                  <div className="absolute top-0 left-1/2 lg:left-1/2 lg:top-1/2 -translate-x-1/2 lg:-translate-y-1/2 w-4 h-4 bg-white rounded-full z-20 border-4 border-[#B60000] shadow-lg shadow-white/50 group-hover:scale-150 group-hover:bg-[#B60000] transition-all duration-500"></div>
+                <div className="group relative">
+                  <div className="hidden lg:block absolute -top-[40px] left-1/2 -translate-x-1/2 w-3 h-3 bg-white rounded-full z-30 border-2 border-[#B60000] shadow-[0_0_0_4px_rgba(182,0,0,0.15),0_0_12px_rgba(255,255,255,0.2)] group-hover:scale-[1.3] group-hover:bg-[#B60000] group-hover:shadow-[0_0_0_6px_rgba(182,0,0,0.25),0_0_20px_rgba(182,0,0,0.4)] transition-all duration-500 ease-[cubic-bezier(0.34,1.56,0.64,1)]"></div>
                   
-                  <div className="relative mt-8 lg:mt-0 lg:pt-12">
-                    <div className="relative group-hover:scale-105 transition-transform duration-500">
-                      <div className="absolute -inset-4 bg-white/10 rounded-[40%_60%_50%_50%_/_30%_70%_70%_30%] blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 animation-delay-400 animate-float"></div>
-                      
-                      <div className="relative bg-gradient-to-br from-white/10 via-white/5 to-transparent backdrop-blur-sm p-6 md:p-8 rounded-[40%_60%_50%_50%_/_30%_70%_70%_30%] border border-white/20 group-hover:border-white/40 transition-all duration-500">
-                        <div className="flex flex-col lg:flex-row items-center lg:items-start gap-4 lg:gap-6">
-                          <div className="relative">
-                            <div className="absolute inset-0 bg-white/20 rounded-[40%_60%_50%_50%_/_30%_70%_70%_30%] blur-lg opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-                            <div className="relative w-16 h-16 md:w-20 md:h-20 bg-white/20 rounded-[40%_60%_50%_50%_/_30%_70%_70%_30%] flex items-center justify-center border-2 border-white/30 group-hover:-rotate-12 transition-transform duration-500">
-                              <FileText className="w-8 h-8 md:w-10 md:h-10 text-white" />
-                            </div>
-                          </div>
-                          <div className="text-center lg:text-left flex-1">
-                            <h3 className="text-xl md:text-2xl font-bold text-white mb-2">
-                              Accompagnement administratif
-                            </h3>
-                            <p className="text-white/80 text-sm md:text-base">
-                              Paperasse, démarches, conseils
-                            </p>
-                          </div>
-                        </div>
-                      </div>
+                  <div className="relative bg-white/[0.085] backdrop-blur-xl border border-white/18 rounded-2xl p-8 md:p-10 hover:bg-white/[0.13] hover:border-white/28 transition-all duration-500 ease-[cubic-bezier(0.4,0,0.2,1)] h-full flex flex-col items-center text-center group-hover:shadow-[0_12px_48px_rgba(0,0,0,0.25),0_0_0_1px_rgba(255,255,255,0.1)] group-hover:-translate-y-2">
+                    <div className="absolute inset-0 bg-gradient-to-br from-white/0 via-white/5 to-white/0 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                    
+                    <div className="relative w-20 h-20 md:w-24 md:h-24 bg-white/[0.13] rounded-2xl flex items-center justify-center border border-white/22 mb-6 group-hover:bg-white/[0.2] group-hover:border-white/35 group-hover:scale-110 group-hover:rotate-3 transition-all duration-500 ease-[cubic-bezier(0.34,1.56,0.64,1)] shadow-[0_4px_16px_rgba(0,0,0,0.1)] group-hover:shadow-[0_8px_24px_rgba(0,0,0,0.15)]">
+                      <div className="absolute inset-0 bg-gradient-to-br from-white/20 to-transparent rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                      <FileText className="w-10 h-10 md:w-12 md:h-12 text-white relative z-10 transition-transform duration-500 group-hover:scale-110" />
                     </div>
+                    <h3 className="text-xl md:text-2xl font-bold text-white mb-3 leading-[1.2] tracking-[-0.01em] relative z-10 group-hover:text-white transition-colors duration-300">
+                      Accompagnement administratif
+                    </h3>
+                    <p className="text-white/88 text-sm md:text-base leading-[1.6] max-w-[200px] relative z-10 group-hover:text-white/95 transition-colors duration-300">
+                      Paperasse, démarches, conseils
+                    </p>
                   </div>
                 </div>
               </ScrollReveal>
@@ -1022,16 +1049,19 @@ export default function HomePage() {
               {/* Étape 5 - Développement commercial */}
               <ScrollReveal delay={300}>
                 <div className="group relative">
-                  <div className="hidden lg:block absolute -top-8 left-1/2 -translate-x-1/2 w-3 h-3 bg-white rounded-full z-20 border-2 border-[#B60000] shadow-lg group-hover:scale-125 group-hover:bg-[#B60000] transition-all duration-300"></div>
+                  <div className="hidden lg:block absolute -top-[40px] left-1/2 -translate-x-1/2 w-3 h-3 bg-white rounded-full z-30 border-2 border-[#B60000] shadow-[0_0_0_4px_rgba(182,0,0,0.15),0_0_12px_rgba(255,255,255,0.2)] group-hover:scale-[1.3] group-hover:bg-[#B60000] group-hover:shadow-[0_0_0_6px_rgba(182,0,0,0.25),0_0_20px_rgba(182,0,0,0.4)] transition-all duration-500 ease-[cubic-bezier(0.34,1.56,0.64,1)]"></div>
                   
-                  <div className="relative bg-white/10 backdrop-blur-sm border border-white/20 rounded-2xl p-6 md:p-8 hover:bg-white/15 hover:border-white/30 transition-all duration-300 h-full flex flex-col items-center text-center group-hover:shadow-xl group-hover:shadow-white/10">
-                    <div className="w-16 h-16 md:w-20 md:h-20 bg-white/20 rounded-xl flex items-center justify-center border-2 border-white/30 mb-4 group-hover:bg-white/30 group-hover:border-white/50 transition-all duration-300">
-                      <TrendingUp className="w-8 h-8 md:w-10 md:h-10 text-white" />
+                  <div className="relative bg-white/[0.085] backdrop-blur-xl border border-white/18 rounded-2xl p-8 md:p-10 hover:bg-white/[0.13] hover:border-white/28 transition-all duration-500 ease-[cubic-bezier(0.4,0,0.2,1)] h-full flex flex-col items-center text-center group-hover:shadow-[0_12px_48px_rgba(0,0,0,0.25),0_0_0_1px_rgba(255,255,255,0.1)] group-hover:-translate-y-2">
+                    <div className="absolute inset-0 bg-gradient-to-br from-white/0 via-white/5 to-white/0 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                    
+                    <div className="relative w-20 h-20 md:w-24 md:h-24 bg-white/[0.13] rounded-2xl flex items-center justify-center border border-white/22 mb-6 group-hover:bg-white/[0.2] group-hover:border-white/35 group-hover:scale-110 group-hover:rotate-3 transition-all duration-500 ease-[cubic-bezier(0.34,1.56,0.64,1)] shadow-[0_4px_16px_rgba(0,0,0,0.1)] group-hover:shadow-[0_8px_24px_rgba(0,0,0,0.15)]">
+                      <div className="absolute inset-0 bg-gradient-to-br from-white/20 to-transparent rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                      <TrendingUp className="w-10 h-10 md:w-12 md:h-12 text-white relative z-10 transition-transform duration-500 group-hover:scale-110" />
                     </div>
-                    <h3 className="text-lg md:text-xl font-bold text-white mb-2">
+                    <h3 className="text-xl md:text-2xl font-bold text-white mb-3 leading-[1.2] tracking-[-0.01em] relative z-10 group-hover:text-white transition-colors duration-300">
                       Développement commercial
                     </h3>
-                    <p className="text-white/80 text-sm md:text-base leading-relaxed">
+                    <p className="text-white/88 text-sm md:text-base leading-[1.6] max-w-[200px] relative z-10 group-hover:text-white/95 transition-colors duration-300">
                       Ventes, prospection, croissance
                     </p>
                   </div>
@@ -1378,7 +1408,13 @@ export default function HomePage() {
             {/* Première ligne : Logo et réseaux sociaux */}
             <div className="flex flex-col sm:flex-row items-center justify-between w-full gap-4">
               <div className="flex items-center gap-2 md:gap-3">
-                <span className="text-white font-bold text-base md:text-xl">Business United</span>
+                <Image
+                  src="/logob.png"
+                  alt="Business United"
+                  width={120}
+                  height={40}
+                  className="h-6 md:h-8 w-auto object-contain"
+                />
               </div>
 
               {/* Réseaux sociaux */}

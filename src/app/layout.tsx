@@ -11,6 +11,14 @@ const inter = Inter({
 export const metadata: Metadata = {
   title: "Business United - Accompagnement Entrepreneurs Caen & Normandie",
   description: "Entreprise de conseil en affaires qui t'accompagne de A à Z pour structurer ton business à Caen et la France. Transforme tes idées en actions concrètes.",
+  icons: {
+    icon: [
+      { url: '/logob.png', type: 'image/png' },
+      { url: '/favicon.ico', type: 'image/x-icon' },
+    ],
+    shortcut: '/logob.png',
+    apple: '/logob.png',
+  },
 };
 
 export default function RootLayout({
@@ -21,6 +29,9 @@ export default function RootLayout({
   return (
     <html lang="fr">
       <head>
+        <link rel="icon" href="/logob.png" type="image/png" sizes="any" />
+        <link rel="shortcut icon" href="/logob.png" type="image/png" />
+        <link rel="apple-touch-icon" href="/logob.png" />
         <script src="https://assets.calendly.com/assets/external/widget.js" async></script>
       </head>
       <body className={`${inter.variable} antialiased`}>
