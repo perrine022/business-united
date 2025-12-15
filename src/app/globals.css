@@ -37,13 +37,41 @@ html {
   animation-play-state: paused;
 }
 
-/* Calendly widget - Pas de scroll */
+/* Calendly widget - Intégration propre sans scroll */
+.calendly-inline-widget-wrapper {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  border-radius: 1rem;
+  background: white;
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.1);
+}
+
 .calendly-inline-widget {
-  overflow: visible !important;
+  position: relative;
+  width: 100%;
+  min-height: 800px;
+  height: auto;
+  overflow: visible;
 }
 
 .calendly-inline-widget iframe {
-  height: 1000px !important;
+  width: 100% !important;
+  height: 800px !important;
+  min-height: 800px !important;
+  border: none !important;
+  overflow: visible !important;
+  display: block;
+  -webkit-overflow-scrolling: touch;
+}
+
+/* Masquer le badge Calendly */
+.calendly-inline-widget .calendly-badge-widget {
+  display: none !important;
+}
+
+/* Améliorer l'intégration du contenu Calendly */
+.calendly-inline-widget > div {
   overflow: visible !important;
 }
 

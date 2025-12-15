@@ -135,6 +135,15 @@ function CalendlyWidget() {
             url: 'https://calendly.com/business-united/30min?embed_domain=business-united.fr&embed_type=Inline',
             parentElement: calendlyRef.current
           });
+          
+          // Ajuster la hauteur de l'iframe après chargement
+          setTimeout(() => {
+            const iframe = calendlyRef.current?.querySelector('iframe');
+            if (iframe) {
+              iframe.style.height = 'auto';
+              iframe.style.minHeight = '700px';
+            }
+          }, 1000);
         }
       } else {
         // Réessayer après un court délai si le script n'est pas encore chargé
@@ -146,11 +155,13 @@ function CalendlyWidget() {
   }, []);
 
   return (
-    <div 
-      ref={calendlyRef}
-      className="calendly-inline-widget" 
-      style={{ minWidth: '320px', height: '700px' }}
-    ></div>
+    <div className="calendly-inline-widget-wrapper w-full" style={{ minHeight: '700px' }}>
+      <div 
+        ref={calendlyRef}
+        className="calendly-inline-widget w-full" 
+        style={{ minWidth: '320px', minHeight: '700px', height: '100%' }}
+      ></div>
+    </div>
   );
 }
 
@@ -1394,8 +1405,10 @@ export default function HomePage() {
           
           {/* Widget Calendly */}
           <ScrollReveal delay={200}>
-            <div className="max-w-4xl mx-auto">
-              <CalendlyWidget />
+            <div className="max-w-5xl mx-auto">
+              <div className="bg-white rounded-2xl shadow-xl overflow-hidden p-4 md:p-6">
+                <CalendlyWidget />
+              </div>
             </div>
           </ScrollReveal>
         </div>
