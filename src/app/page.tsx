@@ -953,7 +953,7 @@ export default function HomePage() {
             <div className="relative grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-6 lg:gap-5">
               
               {/* Étape 1 - Création de site web */}
-              <ScrollReveal delay={100}>
+              <ScrollReveal delay={0}>
                 <div className="group relative">
                   {/* Point de connexion avec glow animé - Desktop */}
                   <div className="hidden lg:block absolute -top-[40px] left-1/2 -translate-x-1/2 w-3 h-3 bg-white rounded-full z-30 border-2 border-[#B60000] shadow-[0_0_0_4px_rgba(182,0,0,0.15),0_0_12px_rgba(255,255,255,0.2)] group-hover:scale-[1.3] group-hover:bg-[#B60000] group-hover:shadow-[0_0_0_6px_rgba(182,0,0,0.25),0_0_20px_rgba(182,0,0,0.4)] transition-all duration-500 ease-[cubic-bezier(0.34,1.56,0.64,1)]"></div>
@@ -981,7 +981,7 @@ export default function HomePage() {
               </ScrollReveal>
 
               {/* Étape 2 - Création d'entreprise */}
-              <ScrollReveal delay={150}>
+              <ScrollReveal delay={200}>
                 <div className="group relative">
                   <div className="hidden lg:block absolute -top-[40px] left-1/2 -translate-x-1/2 w-3 h-3 bg-white rounded-full z-30 border-2 border-[#B60000] shadow-[0_0_0_4px_rgba(182,0,0,0.15),0_0_12px_rgba(255,255,255,0.2)] group-hover:scale-[1.3] group-hover:bg-[#B60000] group-hover:shadow-[0_0_0_6px_rgba(182,0,0,0.25),0_0_20px_rgba(182,0,0,0.4)] transition-all duration-500 ease-[cubic-bezier(0.34,1.56,0.64,1)]"></div>
                   
@@ -1003,7 +1003,7 @@ export default function HomePage() {
               </ScrollReveal>
 
               {/* Étape 3 - Publicité et marketing */}
-              <ScrollReveal delay={200}>
+              <ScrollReveal delay={400}>
                 <div className="group relative">
                   <div className="hidden lg:block absolute -top-[40px] left-1/2 -translate-x-1/2 w-3 h-3 bg-white rounded-full z-30 border-2 border-[#B60000] shadow-[0_0_0_4px_rgba(182,0,0,0.15),0_0_12px_rgba(255,255,255,0.2)] group-hover:scale-[1.3] group-hover:bg-[#B60000] group-hover:shadow-[0_0_0_6px_rgba(182,0,0,0.25),0_0_20px_rgba(182,0,0,0.4)] transition-all duration-500 ease-[cubic-bezier(0.34,1.56,0.64,1)]"></div>
                   
@@ -1025,7 +1025,7 @@ export default function HomePage() {
               </ScrollReveal>
 
               {/* Étape 4 - Accompagnement administratif */}
-              <ScrollReveal delay={250}>
+              <ScrollReveal delay={600}>
                 <div className="group relative">
                   <div className="hidden lg:block absolute -top-[40px] left-1/2 -translate-x-1/2 w-3 h-3 bg-white rounded-full z-30 border-2 border-[#B60000] shadow-[0_0_0_4px_rgba(182,0,0,0.15),0_0_12px_rgba(255,255,255,0.2)] group-hover:scale-[1.3] group-hover:bg-[#B60000] group-hover:shadow-[0_0_0_6px_rgba(182,0,0,0.25),0_0_20px_rgba(182,0,0,0.4)] transition-all duration-500 ease-[cubic-bezier(0.34,1.56,0.64,1)]"></div>
                   
@@ -1047,7 +1047,7 @@ export default function HomePage() {
               </ScrollReveal>
 
               {/* Étape 5 - Développement commercial */}
-              <ScrollReveal delay={300}>
+              <ScrollReveal delay={800}>
                 <div className="group relative">
                   <div className="hidden lg:block absolute -top-[40px] left-1/2 -translate-x-1/2 w-3 h-3 bg-white rounded-full z-30 border-2 border-[#B60000] shadow-[0_0_0_4px_rgba(182,0,0,0.15),0_0_12px_rgba(255,255,255,0.2)] group-hover:scale-[1.3] group-hover:bg-[#B60000] group-hover:shadow-[0_0_0_6px_rgba(182,0,0,0.25),0_0_20px_rgba(182,0,0,0.4)] transition-all duration-500 ease-[cubic-bezier(0.34,1.56,0.64,1)]"></div>
                   
