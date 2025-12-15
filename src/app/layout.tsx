@@ -9,12 +9,8 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: "Quentin - Expert Cold Call | Formation & Coaching Commercial",
-  description: "Formateur et coach spécialisé en cold call. J'aide vos commerciaux à retrouver le plaisir de la vente avec des formations 100% dédiées à la prospection téléphonique.",
-  icons: {
-    icon: "https://slelguoygbfzlpylpxfs.supabase.co/storage/v1/render/image/public/document-uploads/WhatsApp-Image-2025-12-13-at-10.16.33-1765617731496.jpeg",
-    apple: "https://slelguoygbfzlpylpxfs.supabase.co/storage/v1/render/image/public/document-uploads/WhatsApp-Image-2025-12-13-at-10.16.33-1765617731496.jpeg",
-  },
+  title: "Business United - Accompagnement Entrepreneurs Caen & Normandie",
+  description: "Entreprise de conseil en affaires qui t'accompagne de A à Z pour structurer ton business à Caen et la France. Transforme tes idées en actions concrètes.",
 };
 
 export default function RootLayout({
@@ -24,6 +20,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="fr">
+      <head>
+        <script src="https://assets.calendly.com/assets/external/widget.js" async></script>
+      </head>
       <body className={`${inter.variable} antialiased`}>
         {children}
         <div className="fixed bottom-0 left-0 right-0 z-50 bg-gray-900/90 backdrop-blur-sm border-t border-gray-800/50">
