@@ -1454,7 +1454,22 @@ export default function HomePage() {
               Accompagnement entrepreneurs Caen & Normandie
             </p>
 
-            {/* Troisième ligne : Copyright */}
+            {/* Troisième ligne : Liens légaux */}
+            <div className="flex flex-wrap items-center justify-center gap-4 md:gap-6">
+              <a href="#" className="text-white/70 hover:text-white/90 text-xs md:text-sm transition-colors duration-300">
+                Mentions légales
+              </a>
+              <span className="text-white/30">•</span>
+              <a href="#" className="text-white/70 hover:text-white/90 text-xs md:text-sm transition-colors duration-300">
+                Conditions générales
+              </a>
+              <span className="text-white/30">•</span>
+              <a href="#" className="text-white/70 hover:text-white/90 text-xs md:text-sm transition-colors duration-300">
+                Politique de confidentialité
+              </a>
+            </div>
+
+            {/* Quatrième ligne : Copyright */}
             <p className="text-white/70 text-xs md:text-sm text-center">
               © {new Date().getFullYear()} Business United. Tous droits réservés.
             </p>
