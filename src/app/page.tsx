@@ -136,14 +136,34 @@ function CalendlyWidget() {
             parentElement: calendlyRef.current
           });
           
-          // Ajuster la hauteur de l'iframe après chargement
-          setTimeout(() => {
+          // Ajuster la hauteur de l'iframe après chargement pour éviter le scroll
+          const adjustHeight = () => {
             const iframe = calendlyRef.current?.querySelector('iframe');
             if (iframe) {
-              iframe.style.height = '600px';
-              iframe.style.minHeight = '600px';
+              // Écouter les messages de Calendly pour ajuster la hauteur
+              const handleMessage = (event: MessageEvent) => {
+                if (event.data.event && event.data.event.indexOf('calendly') === 0) {
+                  if (event.data.event === 'calendly.event_type_viewed') {
+                    iframe.style.height = '900px';
+                    iframe.style.minHeight = '900px';
+                    iframe.style.maxHeight = '900px';
+                  }
+                }
+              };
+              
+              window.addEventListener('message', handleMessage);
+              
+              // Ajuster après un délai pour laisser le temps au contenu de charger
+              setTimeout(() => {
+                iframe.style.height = '900px';
+                iframe.style.minHeight = '900px';
+                iframe.style.maxHeight = '900px';
+                iframe.style.overflow = 'hidden';
+              }, 1500);
             }
-          }, 1000);
+          };
+          
+          setTimeout(adjustHeight, 500);
         }
       } else {
         // Réessayer après un court délai si le script n'est pas encore chargé
@@ -155,11 +175,11 @@ function CalendlyWidget() {
   }, []);
 
   return (
-    <div className="calendly-inline-widget-wrapper w-full max-w-3xl mx-auto" style={{ minHeight: '600px' }}>
+    <div className="calendly-inline-widget-wrapper w-full max-w-3xl mx-auto" style={{ minHeight: '900px', maxHeight: '900px' }}>
       <div 
         ref={calendlyRef}
         className="calendly-inline-widget w-full" 
-        style={{ minWidth: '320px', minHeight: '600px', height: '100%' }}
+        style={{ minWidth: '320px', minHeight: '900px', maxHeight: '900px', height: '900px' }}
       ></div>
     </div>
   );
@@ -484,38 +504,38 @@ export default function HomePage() {
             </div>
 
             {/* Image à droite avec animations */}
-            <div className="relative animate-slide-in-right animation-delay-300 hero-image-container group w-4/5 mx-auto lg:mx-0">
+            <div className="relative animate-slide-in-right animation-delay-300 hero-image-container group w-full max-w-sm mx-auto lg:max-w-none lg:w-4/5 lg:mx-0">
               {/* Bloc rouge décoratif derrière l'image */}
-              <div className="absolute -z-10 -top-8 -right-8 w-full h-full bg-[#B60000] rounded-3xl opacity-30 blur-xl animate-float group-hover:opacity-50 group-hover:scale-105 transition-all duration-700"></div>
+              <div className="absolute -z-10 -top-4 -right-4 md:-top-8 md:-right-8 w-full h-full bg-[#B60000] rounded-2xl md:rounded-3xl opacity-20 md:opacity-30 blur-xl animate-float group-hover:opacity-50 group-hover:scale-105 transition-all duration-700"></div>
               
-              <div className="relative rounded-2xl overflow-hidden shadow-2xl shadow-[#B60000]/40 cursor-pointer transform transition-all duration-700 group-hover:shadow-[#B60000]/60 group-hover:-translate-y-2">
-                <div className="absolute inset-0 bg-gradient-to-br from-[#B60000]/30 via-transparent to-transparent z-10 group-hover:from-[#B60000]/60 transition-all duration-700"></div>
-                <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent z-10 group-hover:from-black/20 transition-all duration-700"></div>
+              <div className="relative rounded-xl md:rounded-2xl overflow-hidden shadow-xl md:shadow-2xl shadow-[#B60000]/30 md:shadow-[#B60000]/40 cursor-pointer transform transition-all duration-700 group-hover:shadow-[#B60000]/60 group-hover:-translate-y-2">
+                <div className="absolute inset-0 bg-gradient-to-br from-[#B60000]/20 md:from-[#B60000]/30 via-transparent to-transparent z-10 group-hover:from-[#B60000]/60 transition-all duration-700"></div>
+                <div className="absolute inset-0 bg-gradient-to-t from-black/40 md:from-black/50 to-transparent z-10 group-hover:from-black/20 transition-all duration-700"></div>
                 <Image
                   src="https://images.unsplash.com/photo-1521737604893-d14cc237f11d?w=800&h=1000&fit=crop&q=80"
                   alt="Business United - Accompagnement entrepreneurs"
                   width={600}
                   height={700}
-                  className="w-full h-auto object-cover rounded-2xl group-hover:scale-110 group-hover:rotate-2 transition-all duration-700"
+                  className="w-full h-auto max-h-[280px] md:max-h-none object-cover rounded-xl md:rounded-2xl group-hover:scale-110 group-hover:rotate-2 transition-all duration-700"
                   priority
                 />
-                {/* Overlay décoratif animé */}
-                <div className="absolute top-4 right-4 w-20 h-20 bg-[#B60000] rounded-lg blur-xl animate-pulse-slow opacity-60 group-hover:opacity-100 group-hover:scale-150 group-hover:rotate-12 transition-all duration-700"></div>
-                <div className="absolute bottom-4 left-4 w-16 h-16 bg-[#B60000] rounded-full blur-lg animate-float opacity-50 group-hover:opacity-90 group-hover:scale-150 transition-all duration-700"></div>
-                <div className="absolute top-1/2 left-1/4 w-12 h-12 bg-[#B60000] rounded-full blur-md animate-float animation-delay-300 opacity-40 group-hover:opacity-80 group-hover:scale-125 transition-all duration-700"></div>
+                {/* Overlay décoratif animé - Réduit sur mobile */}
+                <div className="absolute top-2 right-2 md:top-4 md:right-4 w-12 h-12 md:w-20 md:h-20 bg-[#B60000] rounded-lg blur-xl animate-pulse-slow opacity-40 md:opacity-60 group-hover:opacity-100 group-hover:scale-150 group-hover:rotate-12 transition-all duration-700"></div>
+                <div className="absolute bottom-2 left-2 md:bottom-4 md:left-4 w-10 h-10 md:w-16 md:h-16 bg-[#B60000] rounded-full blur-lg animate-float opacity-30 md:opacity-50 group-hover:opacity-90 group-hover:scale-150 transition-all duration-700"></div>
+                <div className="hidden md:block absolute top-1/2 left-1/4 w-12 h-12 bg-[#B60000] rounded-full blur-md animate-float animation-delay-300 opacity-40 group-hover:opacity-80 group-hover:scale-125 transition-all duration-700"></div>
                 
                 {/* Effet de brillance */}
-                <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/30 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000"></div>
+                <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 md:via-white/30 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000"></div>
                 
                 {/* Effet de glow au hover */}
-                <div className="absolute inset-0 ring-4 ring-[#B60000]/0 group-hover:ring-[#B60000]/70 rounded-2xl transition-all duration-700 group-hover:ring-8"></div>
+                <div className="absolute inset-0 ring-2 md:ring-4 ring-[#B60000]/0 group-hover:ring-[#B60000]/70 rounded-xl md:rounded-2xl transition-all duration-700 group-hover:ring-4 md:group-hover:ring-8"></div>
                 
-                {/* Particules animées au hover */}
-                <div className="absolute top-1/4 right-1/4 w-2 h-2 bg-[#B60000] rounded-full opacity-0 group-hover:opacity-100 group-hover:animate-float transition-opacity duration-500"></div>
-                <div className="absolute bottom-1/3 right-1/3 w-3 h-3 bg-[#B60000] rounded-full opacity-0 group-hover:opacity-100 group-hover:animate-float animation-delay-200 transition-opacity duration-500"></div>
+                {/* Particules animées au hover - Masquées sur mobile */}
+                <div className="hidden md:block absolute top-1/4 right-1/4 w-2 h-2 bg-[#B60000] rounded-full opacity-0 group-hover:opacity-100 group-hover:animate-float transition-opacity duration-500"></div>
+                <div className="hidden md:block absolute bottom-1/3 right-1/3 w-3 h-3 bg-[#B60000] rounded-full opacity-0 group-hover:opacity-100 group-hover:animate-float animation-delay-200 transition-opacity duration-500"></div>
               </div>
               
-              {/* Éléments décoratifs flottants */}
+              {/* Éléments décoratifs flottants - Masqués sur mobile */}
               <div className="absolute -top-6 -right-6 w-24 h-24 bg-[#B60000] rounded-lg rotate-12 animate-float hidden lg:block opacity-80 group-hover:scale-125 group-hover:rotate-45 transition-all duration-700"></div>
               <div className="absolute -bottom-4 -left-4 w-20 h-20 bg-[#B60000] rounded-full animate-float hidden lg:block opacity-70 animation-delay-200 group-hover:scale-125 transition-all duration-700"></div>
               <div className="absolute top-1/4 -left-6 w-16 h-16 bg-[#B60000] rounded-xl rotate-45 animate-pulse-slow hidden lg:block opacity-60 animation-delay-400 group-hover:rotate-90 group-hover:scale-125 transition-all duration-700"></div>
@@ -524,7 +544,7 @@ export default function HomePage() {
         </div>
 
         {/* Bandeau défilant des entreprises - Intégré dans le hero */}
-        <div className="relative mt-8 md:mt-10 pt-4 md:pt-6 border-t border-white/10 overflow-hidden">
+        <div className="relative mt-6 md:mt-10 pt-3 md:pt-6 border-t border-white/10 overflow-hidden">
           <div className="animate-scroll flex items-center gap-8 md:gap-12 lg:gap-16 whitespace-nowrap">
             {/* Première série */}
             <span className="text-white/80 font-semibold text-sm md:text-base lg:text-lg hover:text-white transition-colors">RK</span>
@@ -626,70 +646,59 @@ export default function HomePage() {
       </section>
 
       {/* Section Problème */}
-      <section className="relative py-12 md:py-20 bg-gradient-to-br from-[#B60000] via-[#950000] to-[#B60000] overflow-hidden">
-        {/* Pattern géométrique sophistiqué */}
-        <div className="absolute inset-0 red-background-pattern"></div>
-        
-        {/* Texture subtile animée */}
-        <div className="absolute inset-0 red-texture-overlay"></div>
-        
-        {/* Grille subtile */}
-        <div className="absolute inset-0 red-grid-overlay animate-grid-pulse"></div>
-        
-        {/* Effet de lumière animée */}
-        <div className="absolute inset-0 red-light-sweep"></div>
-        
-        {/* Points décoratifs */}
-        <div className="absolute inset-0 red-dot-pattern"></div>
-        
-        {/* Overlay sombre pour la lisibilité */}
+      <section className="relative py-8 md:py-20 bg-gradient-to-br from-[#B60000] via-[#950000] to-[#B60000] overflow-hidden">
+        {/* Pattern géométrique sophistiqué - Réduit sur mobile */}
+        <div className="absolute inset-0 red-background-pattern opacity-50 md:opacity-100"></div>
+        <div className="absolute inset-0 red-texture-overlay opacity-50 md:opacity-100"></div>
+        <div className="absolute inset-0 red-grid-overlay animate-grid-pulse opacity-30 md:opacity-100"></div>
+        <div className="absolute inset-0 red-light-sweep opacity-50 md:opacity-100"></div>
+        <div className="absolute inset-0 red-dot-pattern opacity-50 md:opacity-100"></div>
         <div className="absolute inset-0 bg-black/40"></div>
         
-        {/* Blocs décoratifs raffinés */}
-        <div className="absolute inset-0 overflow-hidden">
+        {/* Blocs décoratifs - Masqués sur mobile */}
+        <div className="absolute inset-0 overflow-hidden hidden md:block">
           <div className="absolute top-0 right-0 w-64 h-64 bg-white/10 rounded-2xl blur-2xl opacity-30 rotate-45 animate-subtle-glow"></div>
           <div className="absolute bottom-0 left-0 w-48 h-48 bg-white/10 rounded-full blur-xl opacity-25 animate-subtle-glow animation-delay-200"></div>
-          {/* Lignes décoratives subtiles */}
           <div className="absolute top-1/4 left-0 w-full h-px bg-gradient-to-r from-transparent via-white/20 to-transparent"></div>
           <div className="absolute bottom-1/4 left-0 w-full h-px bg-gradient-to-r from-transparent via-white/15 to-transparent"></div>
         </div>
         <div className="container mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 relative z-10">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 md:gap-12 items-center">
             {/* Contenu texte */}
             <ScrollReveal>
               <div className="text-center lg:text-left">
-                <h2 className="text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-bold text-white mb-4 md:mb-6">
+                <h2 className="text-xl md:text-3xl lg:text-4xl xl:text-5xl font-bold text-white mb-3 md:mb-6 leading-tight">
                   Tu veux te lancer, structurer ton business ou passer à l'étape supérieure ?
                 </h2>
-                <p className="text-xl md:text-2xl lg:text-3xl text-white/95 mb-6 md:mb-8">
+                <p className="text-lg md:text-2xl lg:text-3xl text-white/95 mb-4 md:mb-8">
                   Un entrepreneur ne doit pas avancer seul.
                 </p>
-                <p className="text-lg md:text-xl text-white/90 mb-6 md:mb-8">
+                <p className="text-sm md:text-xl text-white/90 mb-4 md:mb-8 leading-relaxed">
                   Trop souvent, les porteurs de projets abandonnent faute de clarté, de stratégie ou d'accompagnement adapté.
                 </p>
-                <p className="text-xl md:text-2xl lg:text-3xl text-white font-bold mb-6 md:mb-8 drop-shadow-lg">
+                <p className="text-lg md:text-2xl lg:text-3xl text-white font-bold mb-5 md:mb-8 drop-shadow-lg">
                   Business United est né pour combler ce vide.
                 </p>
                 <a 
                   href="#services"
-                  className="inline-flex items-center gap-1.5 px-4 py-2 md:px-8 md:py-4 border-2 border-white text-white font-bold rounded-lg hover:bg-white hover:text-[#B60000] transition-all duration-300 text-sm md:text-lg group shadow-lg"
+                  className="inline-flex items-center gap-1.5 px-5 py-3 md:px-8 md:py-4 border-2 border-white text-white font-bold rounded-lg hover:bg-white hover:text-[#B60000] active:bg-white/90 transition-all duration-300 text-sm md:text-lg group shadow-lg min-h-[44px] touch-manipulation"
                 >
                   En savoir plus
-                  <ArrowRight className="w-3 h-3 md:w-5 md:h-5 group-hover:translate-x-1 transition-transform" />
+                  <ArrowRight className="w-4 h-4 md:w-5 md:h-5 group-hover:translate-x-1 transition-transform" />
                 </a>
               </div>
             </ScrollReveal>
             
             {/* Image */}
             <ScrollReveal delay={200}>
-              <div className="relative rounded-2xl overflow-hidden shadow-2xl group">
-                <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent z-10"></div>
+              <div className="relative rounded-xl md:rounded-2xl overflow-hidden shadow-xl md:shadow-2xl group">
+                <div className="absolute inset-0 bg-gradient-to-t from-black/50 md:from-black/60 to-transparent z-10"></div>
                 <Image
                   src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=800&h=600&fit=crop&q=80"
                   alt="Entrepreneurs en réunion de travail"
                   width={600}
                   height={400}
-                  className="w-full h-auto object-cover rounded-2xl group-hover:scale-105 transition-transform duration-700"
+                  className="w-full h-auto max-h-[240px] md:max-h-none object-cover rounded-xl md:rounded-2xl group-hover:scale-105 transition-transform duration-700"
                 />
               </div>
             </ScrollReveal>
@@ -731,41 +740,41 @@ export default function HomePage() {
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-8 max-w-7xl mx-auto">
             {/* Service 1 - Conseil & stratégie */}
             <ScrollReveal delay={0}>
-              <div className="group relative bg-white/5 backdrop-blur-sm border border-white/10 rounded-2xl p-6 md:p-7 hover:border-[#B60000]/60 hover:bg-white/8 transition-all duration-300 h-full flex flex-col">
-                <div className="flex justify-center mb-6">
-                  <div className="w-14 h-14 md:w-16 md:h-16 bg-[#B60000]/15 rounded-xl flex items-center justify-center border border-[#B60000]/20 group-hover:bg-[#B60000]/25 group-hover:border-[#B60000]/40 transition-all duration-300">
-                    <Briefcase className="w-7 h-7 md:w-8 md:h-8 text-[#B60000]" />
+              <div className="group relative bg-white/5 backdrop-blur-sm border border-white/10 rounded-xl md:rounded-2xl p-4 md:p-7 hover:border-[#B60000]/60 hover:bg-white/8 transition-all duration-300 h-full flex flex-col">
+                <div className="flex justify-center mb-4 md:mb-6">
+                  <div className="w-12 h-12 md:w-16 md:h-16 bg-[#B60000]/15 rounded-lg md:rounded-xl flex items-center justify-center border border-[#B60000]/20 group-hover:bg-[#B60000]/25 group-hover:border-[#B60000]/40 transition-all duration-300">
+                    <Briefcase className="w-6 h-6 md:w-8 md:h-8 text-[#B60000]" />
                   </div>
                 </div>
-                <h3 className="text-lg md:text-xl font-bold text-white mb-3 text-center">Conseil & stratégie</h3>
-                <p className="text-white/75 text-sm mb-6 text-center leading-relaxed">
+                <h3 className="text-base md:text-xl font-bold text-white mb-2 md:mb-3 text-center">Conseil & stratégie</h3>
+                <p className="text-white/75 text-xs md:text-sm mb-4 md:mb-6 text-center leading-relaxed">
                   Structurer ton projet avec une vision claire et des bases solides.
                 </p>
-                <ul className="space-y-2.5 mb-6 flex-grow">
-                  <li className="flex items-center gap-2.5">
+                <ul className="space-y-2 md:space-y-2.5 mb-4 md:mb-6 flex-grow">
+                  <li className="flex items-center gap-2">
                     <div className="w-1.5 h-1.5 bg-[#B60000] rounded-full flex-shrink-0"></div>
-                    <span className="text-white/85 text-sm">Audit d'activité</span>
+                    <span className="text-white/85 text-xs md:text-sm">Audit d'activité</span>
                   </li>
-                  <li className="flex items-center gap-2.5">
+                  <li className="flex items-center gap-2">
                     <div className="w-1.5 h-1.5 bg-[#B60000] rounded-full flex-shrink-0"></div>
-                    <span className="text-white/85 text-sm">Création des statuts</span>
+                    <span className="text-white/85 text-xs md:text-sm">Création des statuts</span>
                   </li>
-                  <li className="flex items-center gap-2.5">
+                  <li className="flex items-center gap-2">
                     <div className="w-1.5 h-1.5 bg-[#B60000] rounded-full flex-shrink-0"></div>
-                    <span className="text-white/85 text-sm">Business plan</span>
+                    <span className="text-white/85 text-xs md:text-sm">Business plan</span>
                   </li>
-                  <li className="flex items-center gap-2.5">
+                  <li className="flex items-center gap-2">
                     <div className="w-1.5 h-1.5 bg-[#B60000] rounded-full flex-shrink-0"></div>
-                    <span className="text-white/85 text-sm">Administratif</span>
+                    <span className="text-white/85 text-xs md:text-sm">Administratif</span>
                   </li>
-                  <li className="flex items-center gap-2.5">
+                  <li className="flex items-center gap-2">
                     <div className="w-1.5 h-1.5 bg-[#B60000] rounded-full flex-shrink-0"></div>
-                    <span className="text-white/85 text-sm">Étude de marché</span>
+                    <span className="text-white/85 text-xs md:text-sm">Étude de marché</span>
                   </li>
                 </ul>
                 <a 
                   href="#contact"
-                  className="block w-full text-center px-4 py-2.5 bg-[#B60000] text-white font-medium rounded-lg hover:bg-[#950000] transition-all duration-300 text-sm"
+                  className="block w-full text-center px-4 py-2.5 md:py-3 bg-[#B60000] text-white font-medium rounded-lg hover:bg-[#950000] active:bg-[#850000] transition-all duration-300 text-xs md:text-sm min-h-[44px] flex items-center justify-center touch-manipulation"
                 >
                   Je veux créer mon business
                 </a>
@@ -774,41 +783,41 @@ export default function HomePage() {
 
             {/* Service 2 - Création de site & tunnels */}
             <ScrollReveal delay={100}>
-              <div className="group relative bg-white/5 backdrop-blur-sm border border-white/10 rounded-2xl p-6 md:p-7 hover:border-[#B60000]/60 hover:bg-white/8 transition-all duration-300 h-full flex flex-col">
-                <div className="flex justify-center mb-6">
-                  <div className="w-14 h-14 md:w-16 md:h-16 bg-[#B60000]/15 rounded-xl flex items-center justify-center border border-[#B60000]/20 group-hover:bg-[#B60000]/25 group-hover:border-[#B60000]/40 transition-all duration-300">
-                    <Globe className="w-7 h-7 md:w-8 md:h-8 text-[#B60000]" />
+              <div className="group relative bg-white/5 backdrop-blur-sm border border-white/10 rounded-xl md:rounded-2xl p-4 md:p-7 hover:border-[#B60000]/60 hover:bg-white/8 transition-all duration-300 h-full flex flex-col">
+                <div className="flex justify-center mb-4 md:mb-6">
+                  <div className="w-12 h-12 md:w-16 md:h-16 bg-[#B60000]/15 rounded-lg md:rounded-xl flex items-center justify-center border border-[#B60000]/20 group-hover:bg-[#B60000]/25 group-hover:border-[#B60000]/40 transition-all duration-300">
+                    <Globe className="w-6 h-6 md:w-8 md:h-8 text-[#B60000]" />
                   </div>
                 </div>
-                <h3 className="text-lg md:text-xl font-bold text-white mb-3 text-center">Création de site & tunnels</h3>
-                <p className="text-white/75 text-sm mb-6 text-center leading-relaxed">
+                <h3 className="text-base md:text-xl font-bold text-white mb-2 md:mb-3 text-center">Création de site & tunnels</h3>
+                <p className="text-white/75 text-xs md:text-sm mb-4 md:mb-6 text-center leading-relaxed">
                   On conçoit tes outils pour attirer et convertir tes prospects
                 </p>
-                <ul className="space-y-2.5 mb-6 flex-grow">
-                  <li className="flex items-center gap-2.5">
+                <ul className="space-y-2 md:space-y-2.5 mb-4 md:mb-6 flex-grow">
+                  <li className="flex items-center gap-2">
                     <div className="w-1.5 h-1.5 bg-[#B60000] rounded-full flex-shrink-0"></div>
-                    <span className="text-white/85 text-sm">Site vitrine</span>
+                    <span className="text-white/85 text-xs md:text-sm">Site vitrine</span>
                   </li>
-                  <li className="flex items-center gap-2.5">
+                  <li className="flex items-center gap-2">
                     <div className="w-1.5 h-1.5 bg-[#B60000] rounded-full flex-shrink-0"></div>
-                    <span className="text-white/85 text-sm">Landing page</span>
+                    <span className="text-white/85 text-xs md:text-sm">Landing page</span>
                   </li>
-                  <li className="flex items-center gap-2.5">
+                  <li className="flex items-center gap-2">
                     <div className="w-1.5 h-1.5 bg-[#B60000] rounded-full flex-shrink-0"></div>
-                    <span className="text-white/85 text-sm">Tunnel automatisé</span>
+                    <span className="text-white/85 text-xs md:text-sm">Tunnel automatisé</span>
                   </li>
-                  <li className="flex items-center gap-2.5">
+                  <li className="flex items-center gap-2">
                     <div className="w-1.5 h-1.5 bg-[#B60000] rounded-full flex-shrink-0"></div>
-                    <span className="text-white/85 text-sm">SEO</span>
+                    <span className="text-white/85 text-xs md:text-sm">SEO</span>
                   </li>
-                  <li className="flex items-center gap-2.5">
+                  <li className="flex items-center gap-2">
                     <div className="w-1.5 h-1.5 bg-[#B60000] rounded-full flex-shrink-0"></div>
-                    <span className="text-white/85 text-sm">Boutique en ligne</span>
+                    <span className="text-white/85 text-xs md:text-sm">Boutique en ligne</span>
                   </li>
                 </ul>
                 <a 
                   href="#contact"
-                  className="block w-full text-center px-4 py-2.5 bg-[#B60000] text-white font-medium rounded-lg hover:bg-[#950000] transition-all duration-300 text-sm"
+                  className="block w-full text-center px-4 py-2.5 md:py-3 bg-[#B60000] text-white font-medium rounded-lg hover:bg-[#950000] active:bg-[#850000] transition-all duration-300 text-xs md:text-sm min-h-[44px] flex items-center justify-center touch-manipulation"
                 >
                   J'ai besoin d'un site
                 </a>
@@ -817,41 +826,41 @@ export default function HomePage() {
 
             {/* Service 3 - Marketing & publicité */}
             <ScrollReveal delay={200}>
-              <div className="group relative bg-white/5 backdrop-blur-sm border border-white/10 rounded-2xl p-6 md:p-7 hover:border-[#B60000]/60 hover:bg-white/8 transition-all duration-300 h-full flex flex-col">
-                <div className="flex justify-center mb-6">
-                  <div className="w-14 h-14 md:w-16 md:h-16 bg-[#B60000]/15 rounded-xl flex items-center justify-center border border-[#B60000]/20 group-hover:bg-[#B60000]/25 group-hover:border-[#B60000]/40 transition-all duration-300">
-                    <Megaphone className="w-7 h-7 md:w-8 md:h-8 text-[#B60000]" />
+              <div className="group relative bg-white/5 backdrop-blur-sm border border-white/10 rounded-xl md:rounded-2xl p-4 md:p-7 hover:border-[#B60000]/60 hover:bg-white/8 transition-all duration-300 h-full flex flex-col">
+                <div className="flex justify-center mb-4 md:mb-6">
+                  <div className="w-12 h-12 md:w-16 md:h-16 bg-[#B60000]/15 rounded-lg md:rounded-xl flex items-center justify-center border border-[#B60000]/20 group-hover:bg-[#B60000]/25 group-hover:border-[#B60000]/40 transition-all duration-300">
+                    <Megaphone className="w-6 h-6 md:w-8 md:h-8 text-[#B60000]" />
                   </div>
                 </div>
-                <h3 className="text-lg md:text-xl font-bold text-white mb-3 text-center">Marketing & publicité</h3>
-                <p className="text-white/75 text-sm mb-6 text-center leading-relaxed">
+                <h3 className="text-base md:text-xl font-bold text-white mb-2 md:mb-3 text-center">Marketing & publicité</h3>
+                <p className="text-white/75 text-xs md:text-sm mb-4 md:mb-6 text-center leading-relaxed">
                   Augmenter ta visibilité et attirer les bons clients
                 </p>
-                <ul className="space-y-2.5 mb-6 flex-grow">
-                  <li className="flex items-center gap-2.5">
+                <ul className="space-y-2 md:space-y-2.5 mb-4 md:mb-6 flex-grow">
+                  <li className="flex items-center gap-2">
                     <div className="w-1.5 h-1.5 bg-[#B60000] rounded-full flex-shrink-0"></div>
-                    <span className="text-white/85 text-sm">Stratégie marketing</span>
+                    <span className="text-white/85 text-xs md:text-sm">Stratégie marketing</span>
                   </li>
-                  <li className="flex items-center gap-2.5">
+                  <li className="flex items-center gap-2">
                     <div className="w-1.5 h-1.5 bg-[#B60000] rounded-full flex-shrink-0"></div>
-                    <span className="text-white/85 text-sm">Création de contenus</span>
+                    <span className="text-white/85 text-xs md:text-sm">Création de contenus</span>
                   </li>
-                  <li className="flex items-center gap-2.5">
+                  <li className="flex items-center gap-2">
                     <div className="w-1.5 h-1.5 bg-[#B60000] rounded-full flex-shrink-0"></div>
-                    <span className="text-white/85 text-sm">Visuels</span>
+                    <span className="text-white/85 text-xs md:text-sm">Visuels</span>
                   </li>
-                  <li className="flex items-center gap-2.5">
+                  <li className="flex items-center gap-2">
                     <div className="w-1.5 h-1.5 bg-[#B60000] rounded-full flex-shrink-0"></div>
-                    <span className="text-white/85 text-sm">Pub Meta</span>
+                    <span className="text-white/85 text-xs md:text-sm">Pub Meta</span>
                   </li>
-                  <li className="flex items-center gap-2.5">
+                  <li className="flex items-center gap-2">
                     <div className="w-1.5 h-1.5 bg-[#B60000] rounded-full flex-shrink-0"></div>
-                    <span className="text-white/85 text-sm">Gestion de campagne</span>
+                    <span className="text-white/85 text-xs md:text-sm">Gestion de campagne</span>
                   </li>
                 </ul>
                 <a 
                   href="#contact"
-                  className="block w-full text-center px-4 py-2.5 bg-[#B60000] text-white font-medium rounded-lg hover:bg-[#950000] transition-all duration-300 text-sm"
+                  className="block w-full text-center px-4 py-2.5 md:py-3 bg-[#B60000] text-white font-medium rounded-lg hover:bg-[#950000] active:bg-[#850000] transition-all duration-300 text-xs md:text-sm min-h-[44px] flex items-center justify-center touch-manipulation"
                 >
                   J'ai besoin de visibilité
                 </a>
@@ -860,41 +869,41 @@ export default function HomePage() {
 
             {/* Service 4 - Développement commercial */}
             <ScrollReveal delay={300}>
-              <div className="group relative bg-white/5 backdrop-blur-sm border border-white/10 rounded-2xl p-6 md:p-7 hover:border-[#B60000]/60 hover:bg-white/8 transition-all duration-300 h-full flex flex-col">
-                <div className="flex justify-center mb-6">
-                  <div className="w-14 h-14 md:w-16 md:h-16 bg-[#B60000]/15 rounded-xl flex items-center justify-center border border-[#B60000]/20 group-hover:bg-[#B60000]/25 group-hover:border-[#B60000]/40 transition-all duration-300">
-                    <TrendingUp className="w-7 h-7 md:w-8 md:h-8 text-[#B60000]" />
+              <div className="group relative bg-white/5 backdrop-blur-sm border border-white/10 rounded-xl md:rounded-2xl p-4 md:p-7 hover:border-[#B60000]/60 hover:bg-white/8 transition-all duration-300 h-full flex flex-col">
+                <div className="flex justify-center mb-4 md:mb-6">
+                  <div className="w-12 h-12 md:w-16 md:h-16 bg-[#B60000]/15 rounded-lg md:rounded-xl flex items-center justify-center border border-[#B60000]/20 group-hover:bg-[#B60000]/25 group-hover:border-[#B60000]/40 transition-all duration-300">
+                    <TrendingUp className="w-6 h-6 md:w-8 md:h-8 text-[#B60000]" />
                   </div>
                 </div>
-                <h3 className="text-lg md:text-xl font-bold text-white mb-3 text-center">Développement commercial</h3>
-                <p className="text-white/75 text-sm mb-6 text-center leading-relaxed">
+                <h3 className="text-base md:text-xl font-bold text-white mb-2 md:mb-3 text-center">Développement commercial</h3>
+                <p className="text-white/75 text-xs md:text-sm mb-4 md:mb-6 text-center leading-relaxed">
                   Trouver plus de clients, vendre plus et booster le chiffre d'affaires.
                 </p>
-                <ul className="space-y-2.5 mb-6 flex-grow">
-                  <li className="flex items-center gap-2.5">
+                <ul className="space-y-2 md:space-y-2.5 mb-4 md:mb-6 flex-grow">
+                  <li className="flex items-center gap-2">
                     <div className="w-1.5 h-1.5 bg-[#B60000] rounded-full flex-shrink-0"></div>
-                    <span className="text-white/85 text-sm">Création d'offre</span>
+                    <span className="text-white/85 text-xs md:text-sm">Création d'offre</span>
                   </li>
-                  <li className="flex items-center gap-2.5">
+                  <li className="flex items-center gap-2">
                     <div className="w-1.5 h-1.5 bg-[#B60000] rounded-full flex-shrink-0"></div>
-                    <span className="text-white/85 text-sm">Création de base de données</span>
+                    <span className="text-white/85 text-xs md:text-sm">Base de données</span>
                   </li>
-                  <li className="flex items-center gap-2.5">
+                  <li className="flex items-center gap-2">
                     <div className="w-1.5 h-1.5 bg-[#B60000] rounded-full flex-shrink-0"></div>
-                    <span className="text-white/85 text-sm">Script de vente</span>
+                    <span className="text-white/85 text-xs md:text-sm">Script de vente</span>
                   </li>
-                  <li className="flex items-center gap-2.5">
+                  <li className="flex items-center gap-2">
                     <div className="w-1.5 h-1.5 bg-[#B60000] rounded-full flex-shrink-0"></div>
-                    <span className="text-white/85 text-sm">Automatisation</span>
+                    <span className="text-white/85 text-xs md:text-sm">Automatisation</span>
                   </li>
-                  <li className="flex items-center gap-2.5">
+                  <li className="flex items-center gap-2">
                     <div className="w-1.5 h-1.5 bg-[#B60000] rounded-full flex-shrink-0"></div>
-                    <span className="text-white/85 text-sm">Social selling</span>
+                    <span className="text-white/85 text-xs md:text-sm">Social selling</span>
                   </li>
                 </ul>
                 <a 
                   href="#contact"
-                  className="block w-full text-center px-4 py-2.5 bg-[#B60000] text-white font-medium rounded-lg hover:bg-[#950000] transition-all duration-300 text-sm"
+                  className="block w-full text-center px-4 py-2.5 md:py-3 bg-[#B60000] text-white font-medium rounded-lg hover:bg-[#950000] active:bg-[#850000] transition-all duration-300 text-xs md:text-sm min-h-[44px] flex items-center justify-center touch-manipulation"
                 >
                   J'ai besoin de vendre
                 </a>
@@ -905,7 +914,7 @@ export default function HomePage() {
       </section>
 
       {/* Section Process de lancement - Design Expert UX/UI */}
-      <section className="relative py-20 md:py-28 lg:py-36 bg-gradient-to-br from-[#B60000] via-[#950000] to-[#B60000] overflow-hidden">
+      <section className="relative py-10 md:py-28 lg:py-36 bg-gradient-to-br from-[#B60000] via-[#950000] to-[#B60000] overflow-hidden">
         {/* Overlay avec gradient radial subtil */}
         <div className="absolute inset-0" style={{
           background: 'radial-gradient(ellipse at center, rgba(0,0,0,0.2) 0%, transparent 70%)'
@@ -1086,7 +1095,7 @@ export default function HomePage() {
       </section>
 
       {/* Section Citation */}
-      <section className="relative py-12 md:py-20 bg-gradient-to-br from-[#B60000] via-[#950000] to-[#B60000] overflow-hidden">
+      <section className="relative py-8 md:py-20 bg-gradient-to-br from-[#B60000] via-[#950000] to-[#B60000] overflow-hidden">
         {/* Pattern géométrique sophistiqué */}
         <div className="absolute inset-0 red-background-pattern"></div>
         
@@ -1116,17 +1125,17 @@ export default function HomePage() {
           <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] border border-white/3 rounded-full"></div>
         </div>
         <div className="container mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 relative z-10">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 md:gap-12 items-center">
             {/* Image */}
             <ScrollReveal delay={100}>
-              <div className="relative rounded-2xl overflow-hidden shadow-2xl group order-2 lg:order-1">
-                <div className="absolute inset-0 bg-gradient-to-br from-[#B60000]/40 to-transparent z-10"></div>
+              <div className="relative rounded-xl md:rounded-2xl overflow-hidden shadow-xl md:shadow-2xl group order-2 lg:order-1">
+                <div className="absolute inset-0 bg-gradient-to-br from-[#B60000]/30 md:from-[#B60000]/40 to-transparent z-10"></div>
                 <Image
                   src="https://images.unsplash.com/photo-1552664730-d307ca884978?w=800&h=600&fit=crop&q=80"
                   alt="Stratégie et réussite entrepreneuriale"
                   width={600}
                   height={400}
-                  className="w-full h-auto object-cover rounded-2xl group-hover:scale-105 transition-transform duration-700"
+                  className="w-full h-auto max-h-[220px] md:max-h-none object-cover rounded-xl md:rounded-2xl group-hover:scale-105 transition-transform duration-700"
                 />
               </div>
             </ScrollReveal>
@@ -1134,16 +1143,16 @@ export default function HomePage() {
             {/* Contenu texte */}
             <ScrollReveal delay={200}>
               <div className="text-center lg:text-left order-1 lg:order-2">
-                <p className="text-2xl md:text-3xl lg:text-4xl text-white/95 mb-4 md:mb-6 font-light italic">
+                <p className="text-lg md:text-3xl lg:text-4xl text-white/95 mb-3 md:mb-6 font-light italic leading-tight">
                   Entreprendre, c'est un pari.
                 </p>
-                <p className="text-2xl md:text-3xl lg:text-4xl text-white font-bold mb-4 md:mb-6 drop-shadow-lg">
+                <p className="text-xl md:text-3xl lg:text-4xl text-white font-bold mb-3 md:mb-6 drop-shadow-lg leading-tight">
                   Réussir, c'est une stratégie.
                 </p>
-                <p className="text-lg md:text-xl lg:text-2xl text-white/90 mb-4 md:mb-6">
+                <p className="text-sm md:text-xl lg:text-2xl text-white/90 mb-3 md:mb-6 leading-relaxed">
                   Chez Business United, on ne promet pas des miracles.
                 </p>
-                <p className="text-lg md:text-xl lg:text-2xl text-white font-semibold">
+                <p className="text-sm md:text-xl lg:text-2xl text-white font-semibold leading-relaxed">
                   On s'implique à fond pour obtenir des résultats concrets.
                 </p>
               </div>
@@ -1153,7 +1162,7 @@ export default function HomePage() {
       </section>
 
       {/* Section À propos */}
-      <section id="approche" className="relative py-12 md:py-16 lg:py-20 bg-gradient-to-b from-black via-gray-900 to-black overflow-hidden">
+      <section id="approche" className="relative py-8 md:py-16 lg:py-20 bg-gradient-to-b from-black via-gray-900 to-black overflow-hidden">
         {/* Effet de background animé */}
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_left,rgba(182,0,0,0.12),transparent_50%)]"></div>
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_bottom_right,rgba(182,0,0,0.1),transparent_50%)]"></div>
@@ -1165,40 +1174,40 @@ export default function HomePage() {
         </div>
         <div className="container mx-auto max-w-5xl px-4 sm:px-6 lg:px-8 relative z-10">
           <ScrollReveal>
-            <div className="text-center mb-8 md:mb-10">
-              <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold text-white mb-4 md:mb-6">
+            <div className="text-center mb-6 md:mb-10">
+              <h2 className="text-xl md:text-3xl lg:text-4xl font-bold text-white mb-3 md:mb-6">
                 Notre approche
               </h2>
             </div>
           </ScrollReveal>
 
           <ScrollReveal delay={100}>
-            <div className="space-y-8 md:space-y-10">
-              <p className="text-white text-xl md:text-2xl lg:text-3xl font-bold text-center leading-tight">
+            <div className="space-y-6 md:space-y-10">
+              <p className="text-white text-base md:text-2xl lg:text-3xl font-bold text-center leading-tight">
                 On ne promet pas de raccourcis.<br />
                 <span className="text-[#B60000]">On crée des résultats.</span>
               </p>
 
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8 mt-10">
-                <div className="flex items-start gap-4 group">
-                  <div className="w-3 h-3 md:w-4 md:h-4 bg-[#B60000] rounded-full mt-2 flex-shrink-0 shadow-lg shadow-[#B60000]/50 group-hover:scale-125 transition-transform duration-300"></div>
-                  <p className="text-white text-lg md:text-xl font-semibold">Un cadre testé sur le terrain</p>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-8 mt-6 md:mt-10">
+                <div className="flex items-start gap-3 md:gap-4 group">
+                  <div className="w-2 h-2 md:w-4 md:h-4 bg-[#B60000] rounded-full mt-1.5 md:mt-2 flex-shrink-0 shadow-lg shadow-[#B60000]/50 group-hover:scale-125 transition-transform duration-300"></div>
+                  <p className="text-white text-sm md:text-xl font-semibold leading-relaxed">Un cadre testé sur le terrain</p>
                 </div>
-                <div className="flex items-start gap-4 group">
-                  <div className="w-3 h-3 md:w-4 md:h-4 bg-[#B60000] rounded-full mt-2 flex-shrink-0 shadow-lg shadow-[#B60000]/50 group-hover:scale-125 transition-transform duration-300"></div>
-                  <p className="text-white text-lg md:text-xl font-semibold">Des outils simples et efficaces</p>
+                <div className="flex items-start gap-3 md:gap-4 group">
+                  <div className="w-2 h-2 md:w-4 md:h-4 bg-[#B60000] rounded-full mt-1.5 md:mt-2 flex-shrink-0 shadow-lg shadow-[#B60000]/50 group-hover:scale-125 transition-transform duration-300"></div>
+                  <p className="text-white text-sm md:text-xl font-semibold leading-relaxed">Des outils simples et efficaces</p>
                 </div>
-                <div className="flex items-start gap-4 group">
-                  <div className="w-3 h-3 md:w-4 md:h-4 bg-[#B60000] rounded-full mt-2 flex-shrink-0 shadow-lg shadow-[#B60000]/50 group-hover:scale-125 transition-transform duration-300"></div>
-                  <p className="text-white text-lg md:text-xl font-semibold">Des résultats concrets et mesurables</p>
+                <div className="flex items-start gap-3 md:gap-4 group">
+                  <div className="w-2 h-2 md:w-4 md:h-4 bg-[#B60000] rounded-full mt-1.5 md:mt-2 flex-shrink-0 shadow-lg shadow-[#B60000]/50 group-hover:scale-125 transition-transform duration-300"></div>
+                  <p className="text-white text-sm md:text-xl font-semibold leading-relaxed">Des résultats concrets et mesurables</p>
                 </div>
-                <div className="flex items-start gap-4 group">
-                  <div className="w-3 h-3 md:w-4 md:h-4 bg-[#B60000] rounded-full mt-2 flex-shrink-0 shadow-lg shadow-[#B60000]/50 group-hover:scale-125 transition-transform duration-300"></div>
-                  <p className="text-white text-lg md:text-xl font-semibold">Présent quand tu en as besoin</p>
+                <div className="flex items-start gap-3 md:gap-4 group">
+                  <div className="w-2 h-2 md:w-4 md:h-4 bg-[#B60000] rounded-full mt-1.5 md:mt-2 flex-shrink-0 shadow-lg shadow-[#B60000]/50 group-hover:scale-125 transition-transform duration-300"></div>
+                  <p className="text-white text-sm md:text-xl font-semibold leading-relaxed">Présent quand tu en as besoin</p>
                 </div>
               </div>
 
-              <p className="text-white text-xl md:text-2xl font-bold text-center mt-12 pt-8 border-t border-white/20">
+              <p className="text-white text-base md:text-2xl font-bold text-center mt-8 md:mt-12 pt-6 md:pt-8 border-t border-white/20 leading-relaxed">
                 Ton succès, <span className="text-[#B60000]">c'est aussi le nôtre.</span>
               </p>
             </div>
@@ -1254,7 +1263,7 @@ export default function HomePage() {
       </section>
 
       {/* Section Qui est derrière Business United */}
-      <section className="relative py-16 md:py-20 lg:py-24 bg-gradient-to-br from-[#B60000] via-[#950000] to-[#B60000] overflow-hidden">
+      <section className="relative py-10 md:py-20 lg:py-24 bg-gradient-to-br from-[#B60000] via-[#950000] to-[#B60000] overflow-hidden">
         {/* Pattern géométrique sophistiqué */}
         <div className="absolute inset-0 red-background-pattern"></div>
         <div className="absolute inset-0 red-texture-overlay"></div>
@@ -1337,7 +1346,7 @@ export default function HomePage() {
       </section>
 
       {/* Section Témoignages */}
-      <section id="temoignages" className="relative py-12 md:py-20 lg:py-32 bg-gradient-to-br from-[#B60000] via-[#950000] to-[#B60000] overflow-hidden">
+      <section id="temoignages" className="relative py-8 md:py-20 lg:py-32 bg-gradient-to-br from-[#B60000] via-[#950000] to-[#B60000] overflow-hidden">
         {/* Pattern géométrique sophistiqué */}
         <div className="absolute inset-0 red-background-pattern"></div>
         
@@ -1381,7 +1390,7 @@ export default function HomePage() {
       </section>
 
       {/* Section CTA Final */}
-      <section id="contact" className="relative py-12 md:py-20 lg:py-32 bg-gradient-to-b from-black via-gray-900 to-black overflow-hidden">
+      <section id="contact" className="relative py-8 md:py-20 lg:py-32 bg-gradient-to-b from-black via-gray-900 to-black overflow-hidden">
         {/* Effet de background animé */}
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(182,0,0,0.2),transparent_70%)] animate-pulse-slow"></div>
         <div className="absolute inset-0 bg-[conic-gradient(from_180deg_at_50%_50%,transparent_0deg,rgba(182,0,0,0.05)_90deg,transparent_180deg)] animate-slow-rotate"></div>
@@ -1394,11 +1403,11 @@ export default function HomePage() {
         </div>
         <div className="container mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 relative z-10">
           <ScrollReveal>
-            <div className="max-w-4xl mx-auto text-center mb-8 md:mb-12">
-              <h2 className="text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-bold text-white mb-4 md:mb-6">
+            <div className="max-w-4xl mx-auto text-center mb-6 md:mb-12">
+              <h2 className="text-xl md:text-3xl lg:text-4xl xl:text-5xl font-bold text-white mb-3 md:mb-6 leading-tight">
                 Tu veux échanger sur ton projet ?
               </h2>
-              <p className="text-lg md:text-xl lg:text-2xl text-white/90 mb-6 md:mb-8">
+              <p className="text-sm md:text-xl lg:text-2xl text-white/90 mb-5 md:mb-8 leading-relaxed px-2">
                 Profite d'un RDV téléphonique offert pour poser tes questions et avoir des conseils personnalisés.
               </p>
             </div>
@@ -1414,7 +1423,7 @@ export default function HomePage() {
       </section>
 
       {/* Footer */}
-      <footer className="border-t border-white/10 py-8 md:py-12 pb-12 md:pb-16 bg-black">
+      <footer className="border-t border-white/10 py-6 md:py-12 pb-8 md:pb-16 bg-black">
         <div className="container mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="flex flex-col items-center gap-6 md:gap-4">
             {/* Première ligne : Logo et réseaux sociaux */}
