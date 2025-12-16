@@ -1,39 +1,174 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Business United
 
-## Getting Started
+Site web professionnel pour Business United - Cabinet de conseil en affaires accompagnant les entrepreneurs à Caen et en Normandie.
 
-First, run the development server:
+## 🚀 Stack Technique
+
+### Framework & Runtime
+- **Next.js 15.1.6** - Framework React avec App Router
+- **React 19.2.0** - Bibliothèque UI moderne
+- **TypeScript 5** - Typage statique pour la robustesse du code
+- **Node.js** - Runtime JavaScript
+
+### Styling & UI
+- **Tailwind CSS 4.1.16** - Framework CSS utility-first
+- **PostCSS 8.5.6** - Traitement CSS avancé
+- **Autoprefixer** - Compatibilité navigateurs
+- **Lucide React** - Bibliothèque d'icônes SVG
+
+### Intégrations
+- **Calendly** - Widget de réservation de rendez-vous inline
+- **Axios** - Client HTTP pour les appels API
+
+## 📁 Architecture du Projet
+
+```
+business-united/
+├── src/
+│   ├── app/                    # App Router Next.js
+│   │   ├── layout.tsx         # Layout principal avec metadata
+│   │   ├── page.tsx           # Page d'accueil principale
+│   │   ├── globals.css        # Styles globaux et animations
+│   │   └── professionnels/    # Page professionnels
+│   ├── components/            # Composants React réutilisables
+│   │   ├── Button.tsx
+│   │   ├── Header.tsx
+│   │   ├── HeroSection.tsx
+│   │   └── TestimonialsSection.tsx
+│   ├── contexts/              # Contextes React
+│   │   ├── FavoritesContext.tsx
+│   │   └── LanguageContext.tsx
+│   ├── hooks/                 # Hooks personnalisés
+│   │   └── useTranslation.ts
+│   ├── lib/                   # Utilitaires et configurations
+│   │   ├── i18n.ts
+│   │   ├── languageDetector.ts
+│   │   └── statusUtils.ts
+│   ├── services/              # Services API
+│   │   └── api.ts
+│   ├── types/                 # Définitions TypeScript
+│   │   ├── annonces.ts
+│   │   ├── campaign.ts
+│   │   └── influencer.ts
+│   └── utils/                 # Fonctions utilitaires
+│       └── conversations.ts
+├── public/                    # Assets statiques
+├── tailwind.config.js         # Configuration Tailwind
+├── tsconfig.json              # Configuration TypeScript
+└── package.json               # Dépendances du projet
+```
+
+## 🛠️ Installation & Développement
+
+### Prérequis
+- Node.js 20+ 
+- npm, yarn, pnpm ou bun
+
+### Installation des dépendances
+
+```bash
+npm install
+# ou
+yarn install
+# ou
+pnpm install
+# ou
+bun install
+```
+
+### Démarrage du serveur de développement
 
 ```bash
 npm run dev
-# or
+# ou
 yarn dev
-# or
+# ou
 pnpm dev
-# or
+# ou
 bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Ouvrir [http://localhost:3000](http://localhost:3000) dans le navigateur.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+### Build de production
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```bash
+npm run build
+npm run start
+```
 
-## Learn More
+## 🎨 Fonctionnalités Techniques
 
-To learn more about Next.js, take a look at the following resources:
+### Animations & Interactions
+- **ScrollReveal** - Composant personnalisé pour animations au scroll avec Intersection Observer
+- **AnimatedCounter** - Animation d'incrémentation des statistiques au scroll
+- **Animations CSS** - Keyframes personnalisés pour effets visuels (shimmer, float, pulse)
+- **Micro-interactions** - Transitions fluides avec courbes de Bézier personnalisées
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+### Performance
+- **Optimisation des images** - Next.js Image avec lazy loading
+- **Code splitting** - Automatique via App Router
+- **Font optimization** - Next.js font optimization pour Geist
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+### Responsive Design
+- **Mobile-first** - Approche mobile-first avec breakpoints Tailwind
+- **Grid adaptatif** - Système de grille responsive pour toutes les sections
+- **Typography fluide** - Tailles de texte adaptatives selon la taille d'écran
 
-## Deploy on Vercel
+### Intégrations Externes
+- **Calendly Widget** - Intégration inline avec gestion du scroll et styles personnalisés
+- **Scripts externes** - Chargement asynchrone des scripts tiers
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## 🎯 Sections Principales
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
-# ongle
-# quentin
-# business-united
+1. **Hero Section** - Présentation de Business United avec CTA
+2. **Statistiques** - Compteurs animés avec incrémentation au scroll
+3. **Services** - Grille de services avec animations
+4. **Process de lancement** - Timeline horizontale avec effets de profondeur
+5. **Témoignages** - Carrousel de témoignages clients
+6. **Contact** - Widget Calendly intégré
+
+## 🔧 Configuration
+
+### TypeScript
+Configuration stricte avec `tsconfig.json` pour la sécurité des types.
+
+### Tailwind CSS
+Configuration avec PostCSS et Autoprefixer pour la compatibilité navigateurs.
+
+### ESLint
+Configuration Next.js pour le linting du code.
+
+## 📦 Déploiement
+
+### Vercel (Recommandé)
+Le projet est optimisé pour le déploiement sur Vercel :
+
+```bash
+vercel deploy
+```
+
+### Variables d'environnement
+Aucune variable d'environnement requise pour le moment.
+
+## 🚀 Scripts Disponibles
+
+- `npm run dev` - Démarre le serveur de développement
+- `npm run build` - Build de production
+- `npm run start` - Démarre le serveur de production
+- `npm run lint` - Exécute ESLint
+
+## 📝 Notes Techniques
+
+- **App Router** - Utilisation du nouveau système de routing de Next.js 15
+- **Server Components** - Par défaut, composants serveur pour meilleures performances
+- **Client Components** - Marqué avec `'use client'` pour l'interactivité
+- **CSS Modules** - Styles globaux avec Tailwind CSS
+- **Type Safety** - TypeScript strict pour éviter les erreurs à l'exécution
+
+## 🔗 Ressources
+
+- [Next.js Documentation](https://nextjs.org/docs)
+- [React Documentation](https://react.dev)
+- [Tailwind CSS Documentation](https://tailwindcss.com/docs)
+- [TypeScript Documentation](https://www.typescriptlang.org/docs)
